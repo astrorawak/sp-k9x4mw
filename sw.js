@@ -1,4 +1,4 @@
-const CACHE = 'sawit-pintar-v3';
+const CACHE = 'sawit-pintar-v4';
 const FILES = [
   './',
   './index.html',

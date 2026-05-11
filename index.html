@@ -799,9 +799,9 @@ function hitungPupuk() {
   if (!luas || !umur || !frekP || !jt || !jp) { err('err-pp', 'Lengkapi semua pilihan dulu ya! Pastikan sudah pilih <strong>jenis pupuk</strong> (Tunggal atau NPK).'); return; }
   const POHON_PER_HA = 140;
   const dosisPerPohon = {
-    tbt:    {urea:0.25, sp36:0.15, mop:0.20, dolomit:0.30},
+    tbt:    {urea:0.50, sp36:0.25, mop:0.30, dolomit:0.30},
     muda:   {urea:1.75, sp36:1.25, mop:1.75, dolomit:1.25},
-    dewasa: {urea:2.25, sp36:1.25, mop:1.75, dolomit:1.50}
+    dewasa: {urea:2.25, sp36:1.25, mop:1.75, dolomit:1.25}
   };
   let d = {...dosisPerPohon[umur]};
   if (jt === 'gambut') { d.urea *= 0.9; d.dolomit *= 1.5; }
