@@ -4,59 +4,47 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sawit Pintar 🌴</title>
-
-<!-- PWA -->
 <meta name="theme-color" content="#1a4a2e">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Sawit Pintar">
 <meta name="description" content="Kalkulator kebun sawit — hitung keuntungan, pupuk, dan balik modal di HP kamu. Offline, tanpa internet.">
 <link rel="manifest" href="manifest.json">
-
-<!-- Icon untuk iPhone Home Screen -->
 <link rel="apple-touch-icon" href="icon.png">
 <link rel="icon" type="image/png" href="icon.png">
 <style>
-:root {
-  --hijau-tua:#1a4a2e; --hijau:#2d7a4f; --hijau-muda:#4caf78;
-  --kuning:#f5c842; --kuning-muda:#fef3c7;
-  --coklat:#8b5e3c; --coklat-muda:#f5ede4;
-  --abu:#6b7280; --merah:#e53e3e; --bg:#f0f7f2;
-}
+:root{--hijau-tua:#1a4a2e;--hijau:#2d7a4f;--hijau-muda:#4caf78;--kuning:#f5c842;--kuning-muda:#fef3c7;--coklat:#8b5e3c;--coklat-muda:#f5ede4;--abu:#6b7280;--merah:#e53e3e;--bg:#f0f7f2;}
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 body{font-family:-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;background:var(--bg);min-height:100vh;color:#1a1a1a;}
-
 .header{background:linear-gradient(135deg,var(--hijau-tua),var(--hijau));padding:20px 16px 28px;text-align:center;position:relative;overflow:hidden;}
 .header::before{content:'';position:absolute;bottom:-20px;left:0;right:0;height:40px;background:var(--bg);border-radius:50% 50% 0 0/100% 100% 0 0;}
 .header-icon{font-size:48px;margin-bottom:6px;}
 .header h1{font-family:Georgia,serif;font-size:28px;color:var(--kuning);letter-spacing:1px;}
 .header p{font-size:13px;color:rgba(255,255,255,.85);margin-top:4px;font-weight:600;}
 .badge{display:inline-block;background:var(--kuning);color:var(--hijau-tua);font-size:11px;font-weight:800;padding:3px 10px;border-radius:20px;margin-top:8px;}
-
 .main{padding:28px 16px 40px;max-width:480px;margin:0 auto;}
-
 /* MENU */
 .menu-title{font-size:15px;font-weight:800;color:var(--hijau-tua);margin-bottom:14px;text-align:center;}
-.menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px;}
+.menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
 .menu-card{background:white;border-radius:16px;padding:18px 12px;text-align:center;cursor:pointer;border:2px solid transparent;transition:all .2s;box-shadow:0 2px 8px rgba(0,0,0,.06);}
 .menu-card:active{transform:scale(.97);}
 .menu-card .icon{font-size:32px;margin-bottom:8px;}
 .menu-card .label{font-size:13px;font-weight:800;color:var(--hijau-tua);line-height:1.3;}
 .menu-card .sublabel{font-size:11px;color:var(--abu);margin-top:3px;}
-
+.menu-grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:16px;}
+.menu-card-sm{background:white;border-radius:14px;padding:14px 8px;text-align:center;cursor:pointer;border:2px solid transparent;transition:all .2s;box-shadow:0 2px 8px rgba(0,0,0,.06);}
+.menu-card-sm:active{transform:scale(.97);}
+.menu-card-sm .icon{font-size:24px;margin-bottom:6px;}
+.menu-card-sm .label{font-size:11px;font-weight:800;color:var(--hijau-tua);line-height:1.3;}
 .info-box{background:var(--coklat-muda);border-radius:12px;padding:12px 14px;font-size:12px;font-weight:600;color:var(--coklat);line-height:1.6;margin-bottom:16px;text-align:center;}
-
 /* KALKULATOR */
 .kalk{display:none;}
 .kalk.show{display:block;animation:fadeUp .3s ease;}
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-
 .kalk-header{display:flex;align-items:center;gap:10px;margin-bottom:20px;}
 .back-btn{background:white;border:none;border-radius:10px;width:36px;height:36px;font-size:18px;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .kalk-title{font-size:18px;font-weight:800;color:var(--hijau-tua);}
-
 .asisten{background:var(--hijau-tua);color:white;border-radius:16px 16px 16px 4px;padding:14px 16px;font-size:14px;font-weight:600;line-height:1.6;margin-bottom:16px;}
-
 /* INPUT */
 .q{margin-bottom:18px;}
 .qlabel{font-size:13px;font-weight:800;color:var(--hijau-tua);margin-bottom:8px;display:block;}
@@ -69,7 +57,6 @@ body{font-family:-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-ser
 .ifield{flex:1;border:2px solid #e2e8f0;border-radius:10px;padding:10px 14px;font-size:15px;font-family:inherit;font-weight:700;color:var(--hijau-tua);background:white;outline:none;transition:border .2s;}
 .ifield:focus{border-color:var(--hijau);}
 .isat{font-size:13px;font-weight:800;color:var(--abu);white-space:nowrap;}
-
 /* SECTION CARD */
 .scard{background:white;border-radius:16px;padding:16px;margin-bottom:16px;box-shadow:0 2px 8px rgba(0,0,0,.06);}
 .scard-title{font-size:14px;font-weight:800;color:var(--hijau-tua);margin-bottom:14px;}
@@ -77,18 +64,14 @@ body{font-family:-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-ser
 .bitem:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
 .bname{font-size:13px;font-weight:800;color:var(--hijau-tua);margin-bottom:2px;}
 .bsub{font-size:11px;color:var(--abu);font-weight:600;margin-bottom:8px;}
-
 /* TOMBOL HITUNG */
 .btn-hitung{width:100%;background:linear-gradient(135deg,var(--hijau),var(--hijau-tua));color:white;border:none;border-radius:14px;padding:16px;font-size:16px;font-weight:800;font-family:inherit;cursor:pointer;box-shadow:0 4px 12px rgba(45,122,79,.35);transition:all .2s;margin-top:4px;}
 .btn-hitung:active{transform:scale(.98);box-shadow:none;}
-
 /* ERROR */
 .err{background:#fef2f2;border-left:4px solid #ef4444;border-radius:0 10px 10px 0;padding:10px 14px;font-size:13px;font-weight:700;color:#7f1d1d;margin-bottom:10px;display:none;}
-
 /* HASIL */
 .hasil{display:none;margin-top:20px;}
 .hasil.show{display:block;animation:fadeUp .3s ease;}
-
 .hcard{background:white;border-radius:16px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,.08);margin-bottom:14px;}
 .hcard-head{background:linear-gradient(135deg,var(--hijau-tua),var(--hijau));padding:14px 16px;}
 .hcard-head span{color:white;font-size:15px;font-weight:800;}
@@ -97,17 +80,14 @@ body{font-family:-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-ser
 .hrow-l{font-size:13px;font-weight:700;color:#4b5563;}
 .hrow-r{font-size:14px;font-weight:800;color:var(--hijau-tua);text-align:right;}
 .hrow-r.merah{color:var(--merah);}
-
 .hutama{background:linear-gradient(135deg,var(--kuning-muda),#fef9c3);border:2px solid var(--kuning);border-radius:16px;padding:18px 16px;text-align:center;margin-bottom:14px;}
 .hutama-label{font-size:13px;font-weight:700;color:var(--coklat);margin-bottom:4px;}
 .hutama-angka{font-size:28px;font-weight:900;color:var(--hijau-tua);}
 .hutama-angka.merah{color:var(--merah);}
 .hutama-angka.kuning{color:#d97706;}
 .hutama-sub{font-size:12px;color:var(--abu);margin-top:4px;font-weight:600;}
-
 .saran{background:#f0fdf4;border-left:4px solid var(--hijau-muda);border-radius:0 12px 12px 0;padding:12px 14px;font-size:13px;font-weight:600;color:var(--hijau-tua);line-height:1.6;margin-bottom:14px;}
 .saran strong{font-weight:800;}
-
 /* BAR CHART */
 .bar-item{margin-bottom:10px;}
 .bar-top{display:flex;justify-content:space-between;margin-bottom:3px;}
@@ -115,27 +95,18 @@ body{font-family:-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-ser
 .bar-r{font-size:12px;font-weight:800;color:var(--hijau-tua);}
 .bar-bg{background:#f3f4f6;border-radius:6px;height:10px;overflow:hidden;}
 .bar-fill{height:100%;border-radius:6px;}
-
 /* TOMBOL BAWAH */
-.btn-ulang{width:100%;background:white;color:var(--hijau-tua);border:2px solid var(--hijau);border-radius:14px;padding:13px;font-size:14px;font-weight:800;font-family:inherit;cursor:pointer;}
-
-/* AREA SCREENSHOT */
-#screenshot-area{background:white;border-radius:16px;padding:16px;margin-bottom:14px;}
-
+.btn-ulang{width:100%;background:white;color:var(--hijau-tua);border:2px solid var(--hijau);border-radius:14px;padding:13px;font-size:14px;font-weight:800;font-family:inherit;cursor:pointer;margin-bottom:10px;}
+.btn-download{width:100%;background:var(--kuning);color:var(--hijau-tua);border:none;border-radius:14px;padding:13px;font-size:14px;font-weight:800;font-family:inherit;cursor:pointer;margin-bottom:10px;}
 .divider{height:1px;background:#e5e7eb;margin:16px 0;}
 .footer{text-align:center;font-size:11px;color:var(--abu);padding:20px 16px;font-weight:600;}
-
 /* RIWAYAT */
 .riwayat-wrap{margin-top:20px;}
 .riwayat-judul{display:flex;align-items:center;gap:8px;margin-bottom:14px;}
 .riwayat-judul span{font-size:16px;font-weight:800;color:var(--hijau-tua);}
-
-/* GRAFIK GARIS SVG */
 .grafik-garis-wrap{background:white;border-radius:16px;padding:16px;margin-bottom:14px;box-shadow:0 2px 8px rgba(0,0,0,.06);}
 .grafik-garis-title{font-size:13px;font-weight:800;color:var(--hijau-tua);margin-bottom:12px;}
 .grafik-svg-wrap{width:100%;overflow-x:auto;}
-
-/* KARTU RIWAYAT */
 .riwayat-item{background:white;border-radius:14px;padding:14px;margin-bottom:10px;box-shadow:0 2px 6px rgba(0,0,0,.06);}
 .riwayat-item-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
 .riwayat-item-nama{font-size:14px;font-weight:800;color:var(--hijau-tua);}
@@ -149,15 +120,41 @@ body{font-family:-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-ser
 .riwayat-stat-val{font-size:13px;font-weight:800;color:var(--hijau-tua);}
 .riwayat-stat-val.merah{color:var(--merah);}
 .btn-hapus-item{background:none;border:none;font-size:18px;cursor:pointer;color:#d1d5db;padding:2px;}
-
-/* HARGA PUPUK TOGGLE */
-.harga-toggle{background:var(--coklat-muda);border:none;border-radius:10px;padding:10px 14px;font-size:12px;font-weight:700;color:var(--coklat);cursor:pointer;width:100%;text-align:left;margin-bottom:8px;}
-.harga-panel{display:none;}
-.harga-panel.show{display:block;}
+/* TOGGLE PANEL */
+.toggle-btn{background:var(--coklat-muda);border:none;border-radius:10px;padding:10px 14px;font-size:12px;font-weight:700;color:var(--coklat);cursor:pointer;width:100%;text-align:left;margin-bottom:8px;}
+.toggle-panel{display:none;}
+.toggle-panel.show{display:block;}
+/* KAMUS & PANDUAN */
+.kamus-item{background:white;border-radius:12px;padding:14px;margin-bottom:10px;box-shadow:0 2px 6px rgba(0,0,0,.06);}
+.kamus-term{font-size:14px;font-weight:800;color:var(--hijau-tua);margin-bottom:4px;}
+.kamus-def{font-size:12px;font-weight:600;color:#4b5563;line-height:1.6;}
+.panduan-item{background:white;border-radius:12px;padding:14px;margin-bottom:10px;box-shadow:0 2px 6px rgba(0,0,0,.06);display:flex;gap:12px;align-items:flex-start;}
+.panduan-icon{font-size:36px;flex-shrink:0;}
+.panduan-nama{font-size:13px;font-weight:800;color:var(--hijau-tua);margin-bottom:3px;}
+.panduan-gejala{font-size:12px;font-weight:600;color:var(--merah);margin-bottom:3px;}
+.panduan-solusi{font-size:12px;font-weight:600;color:#4b5563;line-height:1.5;}
+/* KALENDER */
+.kalender-card{background:white;border-radius:16px;padding:16px;margin-bottom:14px;box-shadow:0 2px 8px rgba(0,0,0,.06);}
+.kalender-title{font-size:14px;font-weight:800;color:var(--hijau-tua);margin-bottom:12px;}
+.kalender-item{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #f3f4f6;}
+.kalender-item:last-child{border-bottom:none;}
+.kalender-label{font-size:13px;font-weight:700;color:#4b5563;}
+.kalender-val{font-size:13px;font-weight:800;color:var(--hijau-tua);}
+.kalender-val.lewat{color:var(--merah);}
+.kalender-val.segera{color:#d97706;}
+.kalender-val.aman{color:var(--hijau);}
+/* ZAKAT */
+.zakat-box{background:#fef3c7;border:2px solid var(--kuning);border-radius:14px;padding:14px;margin-top:14px;}
+.zakat-title{font-size:13px;font-weight:800;color:var(--coklat);margin-bottom:8px;}
+.zakat-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #fde68a;}
+.zakat-row:last-child{border-bottom:none;}
+.zakat-l{font-size:12px;font-weight:700;color:#92400e;}
+.zakat-r{font-size:13px;font-weight:800;color:var(--coklat);}
+/* SCREENSHOT AREA */
+#ss-area-untung,#ss-area-panen,#ss-area-pupuk,#ss-area-bep{background:white;border-radius:16px;padding:16px;margin-bottom:14px;}
 </style>
 </head>
 <body>
-
 <div class="header">
   <div class="header-icon">🌴</div>
   <h1>Sawit Pintar</h1>
@@ -166,56 +163,35 @@ body{font-family:-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-ser
 </div>
 
 <div class="main">
-
-  <!-- MENU -->
+  <!-- MENU UTAMA -->
   <div id="menu">
     <p class="menu-title">👇 Mau hitung apa dulu?</p>
     <div class="menu-grid">
-      <div class="menu-card" onclick="buka('untung')">
-        <div class="icon">💰</div>
-        <div class="label">Keuntungan Bersih</div>
-        <div class="sublabel">per bulan</div>
-      </div>
-      <div class="menu-card" onclick="buka('panen')">
-        <div class="icon">🌾</div>
-        <div class="label">Estimasi Panen</div>
-        <div class="sublabel">ton &amp; kg per bulan</div>
-      </div>
-      <div class="menu-card" onclick="buka('pupuk')">
-        <div class="icon">🧪</div>
-        <div class="label">Kebutuhan Pupuk</div>
-        <div class="sublabel">&amp; estimasi biaya</div>
-      </div>
-      <div class="menu-card" onclick="buka('bep')">
-        <div class="icon">📊</div>
-        <div class="label">Hitung Balik Modal</div>
-        <div class="sublabel">butuh berapa lama?</div>
-      </div>
+      <div class="menu-card" onclick="buka('untung')"><div class="icon">💰</div><div class="label">Keuntungan Bersih</div><div class="sublabel">per bulan</div></div>
+      <div class="menu-card" onclick="buka('panen')"><div class="icon">🌾</div><div class="label">Estimasi Panen</div><div class="sublabel">ton &amp; kg per bulan</div></div>
+      <div class="menu-card" onclick="buka('pupuk')"><div class="icon">🧪</div><div class="label">Kebutuhan Pupuk</div><div class="sublabel">&amp; estimasi biaya</div></div>
+      <div class="menu-card" onclick="buka('bep')"><div class="icon">📊</div><div class="label">Hitung Balik Modal</div><div class="sublabel">butuh berapa lama?</div></div>
     </div>
-    <div class="info-box">📱 Semua perhitungan di HP kamu<br>Tidak perlu internet • Gratis selamanya</div>
+    <p class="menu-title">📚 Fitur Edukasi &amp; Alat Bantu</p>
+    <div class="menu-grid-3">
+      <div class="menu-card-sm" onclick="buka('kalender')"><div class="icon">📅</div><div class="label">Kalender Pupuk</div></div>
+      <div class="menu-card-sm" onclick="buka('panduan')"><div class="icon">🍃</div><div class="label">Panduan Daun</div></div>
+      <div class="menu-card-sm" onclick="buka('kamus')"><div class="icon">📖</div><div class="label">Kamus Sawit</div></div>
+    </div>
+    <div class="info-box">📱 Semua fitur berjalan di HP kamu<br>Tidak perlu internet • 100% Offline</div>
   </div>
 
   <!-- ===== KEUNTUNGAN BERSIH ===== -->
   <div class="kalk" id="kalk-untung">
-    <div class="kalk-header">
-      <button class="back-btn" onclick="kembali()">←</button>
-      <span class="kalk-title">💰 Keuntungan Bersih</span>
-    </div>
-    <div class="asisten">🤖 Isi data panenmu. Pengeluaran bisa dirinci supaya ketahuan mana yang perlu ditekan! Kalau tidak tahu total kg, kira-kira saja — 1 Ha sawit terawat biasanya hasilkan 1.000–1.700 kg per panen.</div>
-
+    <div class="kalk-header"><button class="back-btn" onclick="kembali()">←</button><span class="kalk-title">💰 Keuntungan Bersih</span></div>
+    <div class="asisten">🤖 Isi data panenmu. Pengeluaran bisa dirinci supaya ketahuan mana yang perlu ditekan! 1 Ha sawit terawat biasanya hasilkan 1.000–1.700 kg per panen.</div>
     <div class="q">
       <span class="qlabel">Bulan &amp; tahun panen ini</span>
       <div class="irow">
-        <select class="ifield" id="u-bulan" style="flex:2">
-          <option value="">-- Pilih Bulan --</option>
-          <option>Januari</option><option>Februari</option><option>Maret</option><option>April</option>
-          <option>Mei</option><option>Juni</option><option>Juli</option><option>Agustus</option>
-          <option>September</option><option>Oktober</option><option>November</option><option>Desember</option>
-        </select>
+        <select class="ifield" id="u-bulan" style="flex:2"><option value="">-- Pilih Bulan --</option><option>Januari</option><option>Februari</option><option>Maret</option><option>April</option><option>Mei</option><option>Juni</option><option>Juli</option><option>Agustus</option><option>September</option><option>Oktober</option><option>November</option><option>Desember</option></select>
         <input type="number" class="ifield" id="u-tahun" placeholder="2025" style="flex:1">
       </div>
     </div>
-
     <div class="q">
       <span class="qlabel">Berapa kali panen bulan ini?</span>
       <div class="tbtn-wrap">
@@ -223,103 +199,35 @@ body{font-family:-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-ser
         <button class="tbtn" id="btn-frek-2" onclick="setFrek(2)">2x sebulan</button>
       </div>
     </div>
-
     <div id="wrap-1x" style="display:none">
-      <div class="q">
-        <span class="qlabel">Total TBS dipanen bulan ini</span>
-        <div class="irow"><input type="number" class="ifield" id="u-kg" placeholder="Contoh: 2000"><span class="isat">kg</span></div>
-      </div>
+      <div class="q"><span class="qlabel">Total TBS dipanen bulan ini</span><div class="irow"><input type="number" class="ifield" id="u-kg" placeholder="Contoh: 2000"><span class="isat">kg</span></div></div>
       <div class="q">
         <span class="qlabel">Harga TBS (per kg)</span>
-        <div class="tbtn-wrap" id="g-harga">
-          <button class="tbtn" onclick="set('harga',1500,this,'g-harga')">Rp 1.500</button>
-          <button class="tbtn" onclick="set('harga',2000,this,'g-harga')">Rp 2.000</button>
-          <button class="tbtn" onclick="set('harga',2500,this,'g-harga')">Rp 2.500</button>
-          <button class="tbtn" onclick="set('harga',3000,this,'g-harga')">Rp 3.000</button>
-        </div>
+        <div class="tbtn-wrap" id="g-harga"><button class="tbtn" onclick="set('harga',1500,this,'g-harga')">Rp 1.500</button><button class="tbtn" onclick="set('harga',2000,this,'g-harga')">Rp 2.000</button><button class="tbtn" onclick="set('harga',2500,this,'g-harga')">Rp 2.500</button><button class="tbtn" onclick="set('harga',3000,this,'g-harga')">Rp 3.000</button></div>
         <div class="irow"><input type="number" class="ifield" id="u-harga-c" placeholder="Atau ketik harga..."><span class="isat">Rp/kg</span></div>
       </div>
     </div>
-
     <div id="wrap-2x" style="display:none">
-      <div class="q">
-        <span class="qlabel">Panen pertama — berapa kg?</span>
-        <div class="irow"><input type="number" class="ifield" id="u-kg1" placeholder="Contoh: 1000"><span class="isat">kg</span></div>
-      </div>
-      <div class="q">
-        <span class="qlabel">Harga TBS panen pertama</span>
-        <div class="tbtn-wrap" id="g-h1">
-          <button class="tbtn" onclick="set('h1',1500,this,'g-h1')">Rp 1.500</button>
-          <button class="tbtn" onclick="set('h1',2000,this,'g-h1')">Rp 2.000</button>
-          <button class="tbtn" onclick="set('h1',2500,this,'g-h1')">Rp 2.500</button>
-          <button class="tbtn" onclick="set('h1',3000,this,'g-h1')">Rp 3.000</button>
-        </div>
-        <div class="irow"><input type="number" class="ifield" id="u-h1-c" placeholder="Atau ketik..."><span class="isat">Rp/kg</span></div>
-      </div>
-      <div class="q">
-        <span class="qlabel">Panen kedua — berapa kg?</span>
-        <div class="irow"><input type="number" class="ifield" id="u-kg2" placeholder="Contoh: 1200"><span class="isat">kg</span></div>
-      </div>
-      <div class="q">
-        <span class="qlabel">Harga TBS panen kedua</span>
-        <div class="tbtn-wrap" id="g-h2">
-          <button class="tbtn" onclick="set('h2',1500,this,'g-h2')">Rp 1.500</button>
-          <button class="tbtn" onclick="set('h2',2000,this,'g-h2')">Rp 2.000</button>
-          <button class="tbtn" onclick="set('h2',2500,this,'g-h2')">Rp 2.500</button>
-          <button class="tbtn" onclick="set('h2',3000,this,'g-h2')">Rp 3.000</button>
-        </div>
-        <div class="irow"><input type="number" class="ifield" id="u-h2-c" placeholder="Atau ketik..."><span class="isat">Rp/kg</span></div>
-      </div>
+      <div class="q"><span class="qlabel">Panen pertama — berapa kg?</span><div class="irow"><input type="number" class="ifield" id="u-kg1" placeholder="Contoh: 1000"><span class="isat">kg</span></div></div>
+      <div class="q"><span class="qlabel">Harga TBS panen pertama</span><div class="tbtn-wrap" id="g-h1"><button class="tbtn" onclick="set('h1',1500,this,'g-h1')">Rp 1.500</button><button class="tbtn" onclick="set('h1',2000,this,'g-h1')">Rp 2.000</button><button class="tbtn" onclick="set('h1',2500,this,'g-h1')">Rp 2.500</button><button class="tbtn" onclick="set('h1',3000,this,'g-h1')">Rp 3.000</button></div><div class="irow"><input type="number" class="ifield" id="u-h1-c" placeholder="Atau ketik..."><span class="isat">Rp/kg</span></div></div>
+      <div class="q"><span class="qlabel">Panen kedua — berapa kg?</span><div class="irow"><input type="number" class="ifield" id="u-kg2" placeholder="Contoh: 1200"><span class="isat">kg</span></div></div>
+      <div class="q"><span class="qlabel">Harga TBS panen kedua</span><div class="tbtn-wrap" id="g-h2"><button class="tbtn" onclick="set('h2',1500,this,'g-h2')">Rp 1.500</button><button class="tbtn" onclick="set('h2',2000,this,'g-h2')">Rp 2.000</button><button class="tbtn" onclick="set('h2',2500,this,'g-h2')">Rp 2.500</button><button class="tbtn" onclick="set('h2',3000,this,'g-h2')">Rp 3.000</button></div><div class="irow"><input type="number" class="ifield" id="u-h2-c" placeholder="Atau ketik..."><span class="isat">Rp/kg</span></div></div>
     </div>
-
     <div class="scard">
       <div class="scard-title">💸 Rincian Pengeluaran</div>
-      <div class="bitem">
-        <div class="bname">👷 Upah Pemanen</div>
-        <div class="bsub">Pilih cara hitung</div>
-        <div class="tbtn-wrap">
-          <button class="tbtn" id="btn-upah-kg" onclick="setUpah('kg')">Per kg TBS</button>
-          <button class="tbtn" id="btn-upah-bor" onclick="setUpah('bor')">Borongan</button>
-        </div>
-        <div id="wrap-upah-kg" style="display:none">
-          <div class="irow"><input type="number" class="ifield" id="u-upah-kg" placeholder="Contoh: 120"><span class="isat">Rp/kg</span></div>
-        </div>
-        <div id="wrap-upah-bor" style="display:none">
-          <div class="irow"><input type="number" class="ifield" id="u-upah-bor" placeholder="Total upah..."><span class="isat">Rp</span></div>
-        </div>
-      </div>
-      <div class="bitem">
-        <div class="bname">🚛 Transport ke Pengepul/Pabrik</div>
-        <div class="bsub">Isi 0 jika gratis</div>
-        <div class="irow"><input type="number" class="ifield" id="u-transport" placeholder="0"><span class="isat">Rp</span></div>
-      </div>
-      <div class="bitem">
-        <div class="bname">🧪 Pupuk &amp; Pestisida</div>
-        <div class="irow"><input type="number" class="ifield" id="u-pupuk" placeholder="0"><span class="isat">Rp</span></div>
-      </div>
-      <div class="bitem">
-        <div class="bname">🌿 Perawatan Kebun</div>
-        <div class="bsub">Babat, semprot gulma, dll</div>
-        <div class="irow"><input type="number" class="ifield" id="u-rawat" placeholder="0"><span class="isat">Rp</span></div>
-      </div>
-      <div class="bitem">
-        <div class="bname">📦 Lain-lain</div>
-        <div class="irow"><input type="number" class="ifield" id="u-lain" placeholder="0"><span class="isat">Rp</span></div>
-      </div>
+      <div class="bitem"><div class="bname">👷 Upah Pemanen</div><div class="bsub">Pilih cara hitung</div><div class="tbtn-wrap"><button class="tbtn" id="btn-upah-kg" onclick="setUpah('kg')">Per kg TBS</button><button class="tbtn" id="btn-upah-bor" onclick="setUpah('bor')">Borongan</button></div><div id="wrap-upah-kg" style="display:none"><div class="irow"><input type="number" class="ifield" id="u-upah-kg" placeholder="Contoh: 120"><span class="isat">Rp/kg</span></div></div><div id="wrap-upah-bor" style="display:none"><div class="irow"><input type="number" class="ifield" id="u-upah-bor" placeholder="Total upah..."><span class="isat">Rp</span></div></div></div>
+      <div class="bitem"><div class="bname">🚛 Transport ke Pengepul/Pabrik</div><div class="bsub">Isi 0 jika gratis</div><div class="irow"><input type="number" class="ifield" id="u-transport" placeholder="0"><span class="isat">Rp</span></div></div>
+      <div class="bitem"><div class="bname">🧪 Pupuk &amp; Pestisida</div><div class="irow"><input type="number" class="ifield" id="u-pupuk" placeholder="0"><span class="isat">Rp</span></div></div>
+      <div class="bitem"><div class="bname">🌿 Perawatan Kebun</div><div class="bsub">Babat, semprot gulma, dll</div><div class="irow"><input type="number" class="ifield" id="u-rawat" placeholder="0"><span class="isat">Rp</span></div></div>
+      <div class="bitem"><div class="bname">📦 Lain-lain</div><div class="irow"><input type="number" class="ifield" id="u-lain" placeholder="0"><span class="isat">Rp</span></div></div>
     </div>
-
     <div class="err" id="err-u"></div>
     <button class="btn-hitung" onclick="hitungUntung()">💰 Hitung Keuntungan Bersihku</button>
-
     <div class="hasil" id="hasil-u">
       <div class="divider"></div>
-      <div id="screenshot-area">
+      <div id="ss-area-untung">
         <div class="asisten" id="asisten-u">🤖 Nih hasilnya!</div>
-        <div class="hutama">
-          <div class="hutama-label">Keuntungan Bersih Bulan Ini</div>
-          <div class="hutama-angka" id="r-bersih">-</div>
-          <div class="hutama-sub" id="r-bersih-sub">-</div>
-        </div>
+        <div class="hutama"><div class="hutama-label">Keuntungan Bersih Bulan Ini</div><div class="hutama-angka" id="r-bersih">-</div><div class="hutama-sub" id="r-bersih-sub">-</div></div>
         <div class="hcard">
           <div class="hcard-head"><span>📋 Rincian Lengkap</span></div>
           <div class="hrow"><span class="hrow-l">Bulan</span><span class="hrow-r" id="r-bulan">-</span></div>
@@ -329,254 +237,260 @@ body{font-family:-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-ser
           <div class="hrow"><span class="hrow-l">Total Pengeluaran</span><span class="hrow-r merah" id="r-keluar">-</span></div>
           <div class="hrow"><span class="hrow-l">Margin</span><span class="hrow-r" id="r-margin">-</span></div>
         </div>
-        <div class="hcard">
-          <div class="hcard-head"><span>📊 Operasional — Mana Paling Besar?</span></div>
-          <div style="padding:14px 16px"><div id="r-grafik"></div></div>
-        </div>
+        <div class="hcard"><div class="hcard-head"><span>📊 Operasional — Mana Paling Besar?</span></div><div style="padding:14px 16px"><div id="r-grafik"></div></div></div>
         <div class="saran" id="r-saran"></div>
+        <!-- ZAKAT -->
+        <div id="r-zakat-box" class="zakat-box" style="display:none">
+          <div class="zakat-title">☪️ Estimasi Zakat Mal (2,5%)</div>
+          <div class="zakat-row"><span class="zakat-l">Keuntungan Bersih</span><span class="zakat-r" id="z-bersih">-</span></div>
+          <div class="zakat-row"><span class="zakat-l">Zakat yang Perlu Dibayar</span><span class="zakat-r" id="z-nominal">-</span></div>
+          <div class="zakat-row"><span class="zakat-l">Keterangan</span><span class="zakat-r" id="z-ket">-</span></div>
+        </div>
       </div>
-      <div style="background:var(--coklat-muda);border-radius:12px;padding:11px 14px;font-size:12px;font-weight:600;color:var(--coklat);text-align:center;margin-bottom:10px;">
-        📸 Mau simpan hasil ini? Tekan <strong>Power + Volume Atas</strong> di HP kamu untuk screenshot
+      <div class="q" style="margin-top:14px;">
+        <span class="qlabel">☪️ Tampilkan Estimasi Zakat Mal?</span>
+        <span class="qhint">Opsional — untuk petani Muslim yang ingin tahu kewajiban zakatnya</span>
+        <div class="tbtn-wrap"><button class="tbtn" id="btn-zakat-ya" onclick="toggleZakat(true)">Ya, tampilkan</button><button class="tbtn" id="btn-zakat-tidak" onclick="toggleZakat(false)">Tidak perlu</button></div>
       </div>
+      <button class="btn-download" onclick="downloadLaporan('untung')">📥 Simpan Laporan ke Galeri</button>
       <button class="btn-ulang" onclick="ulangUntung()">🔄 Hitung Ulang</button>
     </div>
-
     <div id="riwayat-untung" style="display:none;" class="riwayat-wrap">
       <div class="divider"></div>
-      <div class="riwayat-judul">
-        <span>📅 Riwayat Panen (Otomatis Tersimpan)</span>
-      </div>
-      <div class="grafik-garis-wrap">
-        <div class="grafik-garis-title">📈 Tren Keuntungan Bersih</div>
-        <div class="grafik-svg-wrap"><svg id="svg-tren" width="100%" height="120"></svg></div>
-        <div id="svg-labels" style="display:flex;justify-content:space-between;margin-top:4px;padding:0 8px;"></div>
-      </div>
+      <div class="riwayat-judul"><span>📅 Riwayat Panen (Otomatis Tersimpan)</span></div>
+      <div class="grafik-garis-wrap"><div class="grafik-garis-title">📈 Tren Keuntungan Bersih</div><div class="grafik-svg-wrap"><svg id="svg-tren" width="100%" height="120"></svg></div><div id="svg-labels" style="display:flex;justify-content:space-between;margin-top:4px;padding:0 8px;"></div></div>
       <div id="list-riwayat"></div>
     </div>
   </div>
 
   <!-- ===== ESTIMASI PANEN ===== -->
   <div class="kalk" id="kalk-panen">
-    <div class="kalk-header">
-      <button class="back-btn" onclick="kembali()">←</button>
-      <span class="kalk-title">🌾 Estimasi Hasil Panen</span>
-    </div>
+    <div class="kalk-header"><button class="back-btn" onclick="kembali()">←</button><span class="kalk-title">🌾 Estimasi Hasil Panen</span></div>
     <div class="asisten">🤖 Kita hitung berapa kira-kira hasil panen sawitmu tiap bulan!</div>
     <div class="q">
-      <span class="qlabel">Luas kebun</span>
-      <span class="qhint">💡 1 Ha = sekitar 2,5 kali lapangan bola</span>
-      <div class="tbtn-wrap" id="g-luas">
-        <button class="tbtn" onclick="set('luas',1,this,'g-luas')">1 Ha</button>
-        <button class="tbtn" onclick="set('luas',2,this,'g-luas')">2 Ha</button>
-        <button class="tbtn" onclick="set('luas',3,this,'g-luas')">3 Ha</button>
-        <button class="tbtn" onclick="set('luas',5,this,'g-luas')">5 Ha</button>
-        <button class="tbtn" onclick="set('luas',10,this,'g-luas')">10 Ha</button>
-      </div>
+      <span class="qlabel">Luas kebun</span><span class="qhint">💡 1 Ha = sekitar 2,5 kali lapangan bola</span>
+      <div class="tbtn-wrap" id="g-luas"><button class="tbtn" onclick="set('luas',1,this,'g-luas')">1 Ha</button><button class="tbtn" onclick="set('luas',2,this,'g-luas')">2 Ha</button><button class="tbtn" onclick="set('luas',3,this,'g-luas')">3 Ha</button><button class="tbtn" onclick="set('luas',5,this,'g-luas')">5 Ha</button><button class="tbtn" onclick="set('luas',10,this,'g-luas')">10 Ha</button></div>
       <div class="irow"><input type="number" class="ifield" id="p-luas-c" placeholder="Atau ketik..." oninput="setC('luas',this.value,'g-luas')"><span class="isat">Ha</span></div>
     </div>
     <div class="q">
-      <span class="qlabel">Umur pohon sawit</span>
-      <span class="qhint">💡 Pohon sawit mulai berbuah di umur 3 tahun</span>
-      <div class="tbtn-wrap">
-        <button class="tbtn" onclick="set('umur','muda',this)">3–5 tahun</button>
-        <button class="tbtn" onclick="set('umur','prima',this)">6–10 tahun</button>
-        <button class="tbtn" onclick="set('umur','dewasa',this)">11–20 tahun</button>
-        <button class="tbtn" onclick="set('umur','tua',this)">20+ tahun</button>
-      </div>
+      <span class="qlabel">Umur pohon sawit</span><span class="qhint">💡 Pohon sawit mulai berbuah di umur 3 tahun</span>
+      <div class="tbtn-wrap"><button class="tbtn" onclick="set('umur','muda',this)">3–5 tahun</button><button class="tbtn" onclick="set('umur','prima',this)">6–10 tahun</button><button class="tbtn" onclick="set('umur','dewasa',this)">11–20 tahun</button><button class="tbtn" onclick="set('umur','tua',this)">20+ tahun</button></div>
     </div>
     <div class="q">
-      <span class="qlabel">Kondisi perawatan</span>
-      <span class="qhint">💡 Terawat = rutin dipupuk, dibersihkan, dan dipanen tepat waktu</span>
-      <div class="tbtn-wrap">
-        <button class="tbtn" onclick="set('rawat',.7,this)">😓 Kurang terawat</button>
-        <button class="tbtn" onclick="set('rawat',.85,this)">😊 Cukup terawat</button>
-        <button class="tbtn" onclick="set('rawat',1,this)">💪 Sangat terawat</button>
-      </div>
+      <span class="qlabel">Kondisi perawatan</span><span class="qhint">💡 Terawat = rutin dipupuk, dibersihkan, dan dipanen tepat waktu</span>
+      <div class="tbtn-wrap"><button class="tbtn" onclick="set('rawat',.7,this)">😓 Kurang terawat</button><button class="tbtn" onclick="set('rawat',.85,this)">😊 Cukup terawat</button><button class="tbtn" onclick="set('rawat',1,this)">💪 Sangat terawat</button></div>
+    </div>
+    <div class="q">
+      <span class="qlabel">Musim saat ini</span>
+      <span class="qhint">💡 Musim Trek = buah sedikit (biasanya Feb–Apr). Puncak = buah banyak (Sep–Nov). Normal = bulan biasa.</span>
+      <div class="tbtn-wrap"><button class="tbtn" onclick="set('musim',1.15,this)">🌟 Puncak</button><button class="tbtn" onclick="set('musim',1,this)">😊 Normal</button><button class="tbtn" onclick="set('musim',0.7,this)">😟 Trek (Sedikit)</button></div>
     </div>
     <div class="err" id="err-p"></div>
     <button class="btn-hitung" onclick="hitungPanen()">🌾 Hitung Estimasi Panen</button>
     <div class="hasil" id="hasil-p">
       <div class="divider"></div>
-      <div id="ss-panen">
-        <div class="hutama">
-          <div class="hutama-label">Estimasi Panen Per Bulan</div>
-          <div class="hutama-angka" id="p-bulan">-</div>
-          <div class="hutama-sub" id="p-ton">-</div>
-        </div>
+      <div id="ss-area-panen">
+        <div class="hutama"><div class="hutama-label">Estimasi Panen Per Bulan</div><div class="hutama-angka" id="p-bulan">-</div><div class="hutama-sub" id="p-ton">-</div></div>
         <div class="hcard">
           <div class="hcard-head"><span>📋 Rincian</span></div>
           <div class="hrow"><span class="hrow-l">Luas Kebun</span><span class="hrow-r" id="p-luas">-</span></div>
           <div class="hrow"><span class="hrow-l">Potensi per Ha/tahun</span><span class="hrow-r" id="p-potensi">-</span></div>
           <div class="hrow"><span class="hrow-l">Faktor Perawatan</span><span class="hrow-r" id="p-faktor">-</span></div>
+          <div class="hrow"><span class="hrow-l">Faktor Musim</span><span class="hrow-r" id="p-musim">-</span></div>
           <div class="hrow"><span class="hrow-l">Estimasi per Tahun</span><span class="hrow-r" id="p-tahun">-</span></div>
         </div>
         <div class="saran" id="p-saran"></div>
       </div>
-      <div style="background:var(--coklat-muda);border-radius:12px;padding:11px 14px;font-size:12px;font-weight:600;color:var(--coklat);text-align:center;margin-bottom:10px;">📸 Mau simpan? Tekan <strong>Power + Volume Atas</strong> untuk screenshot</div>
+      <button class="btn-download" onclick="downloadLaporan('panen')">📥 Simpan Laporan ke Galeri</button>
       <button class="btn-ulang" onclick="ulang('kalk-panen','hasil-p','err-p')">🔄 Hitung Ulang</button>
     </div>
   </div>
 
-  <!-- ===== PUPUK (DIPERBAIKI) ===== -->
+  <!-- ===== PUPUK ===== -->
   <div class="kalk" id="kalk-pupuk">
-    <div class="kalk-header">
-      <button class="back-btn" onclick="kembali()">←</button>
-      <span class="kalk-title">🧪 Kebutuhan Pupuk</span>
-    </div>
+    <div class="kalk-header"><button class="back-btn" onclick="kembali()">←</button><span class="kalk-title">🧪 Kebutuhan Pupuk</span></div>
     <div class="asisten">🤖 Kita hitung kebutuhan dan biaya pupuk per pemupukan! Dosis sudah sesuai standar PPKS (Pusat Penelitian Kelapa Sawit).</div>
-
     <div class="q">
-      <span class="qlabel">Luas kebun</span>
-      <span class="qhint">💡 1 Ha = sekitar 140 pohon sawit</span>
-      <div class="tbtn-wrap" id="g-lp">
-        <button class="tbtn" onclick="set('lp',1,this,'g-lp')">1 Ha</button>
-        <button class="tbtn" onclick="set('lp',2,this,'g-lp')">2 Ha</button>
-        <button class="tbtn" onclick="set('lp',3,this,'g-lp')">3 Ha</button>
-        <button class="tbtn" onclick="set('lp',5,this,'g-lp')">5 Ha</button>
-        <button class="tbtn" onclick="set('lp',10,this,'g-lp')">10 Ha</button>
-      </div>
+      <span class="qlabel">Luas kebun</span><span class="qhint">💡 1 Ha = sekitar 140 pohon sawit</span>
+      <div class="tbtn-wrap" id="g-lp"><button class="tbtn" onclick="set('lp',1,this,'g-lp')">1 Ha</button><button class="tbtn" onclick="set('lp',2,this,'g-lp')">2 Ha</button><button class="tbtn" onclick="set('lp',3,this,'g-lp')">3 Ha</button><button class="tbtn" onclick="set('lp',5,this,'g-lp')">5 Ha</button><button class="tbtn" onclick="set('lp',10,this,'g-lp')">10 Ha</button></div>
       <div class="irow"><input type="number" class="ifield" id="pp-luas-c" placeholder="Atau ketik..." oninput="setC('lp',this.value,'g-lp')"><span class="isat">Ha</span></div>
     </div>
-
     <div class="q">
-      <span class="qlabel">Umur pohon sawit</span>
-      <span class="qhint">💡 Pohon belum panen = masih di bawah 3 tahun</span>
-      <div class="tbtn-wrap">
-        <button class="tbtn" onclick="set('up','tbt',this)">Belum panen</button>
-        <button class="tbtn" onclick="set('up','muda',this)">3–8 tahun</button>
-        <button class="tbtn" onclick="set('up','dewasa',this)">9 tahun ke atas</button>
-      </div>
+      <span class="qlabel">Umur pohon sawit</span><span class="qhint">💡 Pohon belum panen = masih di bawah 3 tahun</span>
+      <div class="tbtn-wrap"><button class="tbtn" onclick="set('up','tbt',this)">Belum panen</button><button class="tbtn" onclick="set('up','muda',this)">3–8 tahun</button><button class="tbtn" onclick="set('up','dewasa',this)">9 tahun ke atas</button></div>
     </div>
-
     <div class="q">
-      <span class="qlabel">Jenis tanah kebun</span>
-      <span class="qhint">💡 Tanah gambut berwarna hitam pekat. Tanah mineral berwarna merah atau coklat.</span>
-      <div class="tbtn-wrap">
-        <button class="tbtn" onclick="set('jt','mineral',this)">🪨 Tanah Mineral</button>
-        <button class="tbtn" onclick="set('jt','gambut',this)">🌿 Tanah Gambut</button>
-      </div>
+      <span class="qlabel">Jenis tanah kebun</span><span class="qhint">💡 Tanah gambut berwarna hitam pekat. Tanah mineral berwarna merah atau coklat.</span>
+      <div class="tbtn-wrap"><button class="tbtn" onclick="set('jt','mineral',this)">🪨 Tanah Mineral</button><button class="tbtn" onclick="set('jt','gambut',this)">🌿 Tanah Gambut</button></div>
     </div>
-
     <div class="q">
-      <span class="qlabel">Berapa kali pemupukan setahun?</span>
-      <span class="qhint">💡 Umumnya 2–3 kali setahun, setiap 4–6 bulan sekali</span>
-      <div class="tbtn-wrap">
-        <button class="tbtn" onclick="set('fp',1,this)">1x setahun</button>
-        <button class="tbtn" onclick="set('fp',2,this)">2x setahun</button>
-        <button class="tbtn" onclick="set('fp',3,this)">3x setahun</button>
-      </div>
+      <span class="qlabel">Jenis pupuk yang digunakan</span><span class="qhint">💡 Pupuk Tunggal = Urea, SP-36, MOP dibeli terpisah. Pupuk Majemuk (NPK) = sudah campuran dalam 1 karung.</span>
+      <div class="tbtn-wrap"><button class="tbtn" onclick="set('jp','tunggal',this)">Pupuk Tunggal (Urea, SP-36, MOP)</button><button class="tbtn" onclick="set('jp','npk',this)">Pupuk Majemuk (NPK)</button></div>
     </div>
-
     <div class="q">
-      <button class="harga-toggle" onclick="toggleHarga()">💰 Sesuaikan Harga Pupuk Lokal (Opsional) ▼</button>
-      <div class="harga-panel" id="harga-panel">
+      <span class="qlabel">Berapa kali pemupukan setahun?</span><span class="qhint">💡 Umumnya 2–3 kali setahun, setiap 4–6 bulan sekali</span>
+      <div class="tbtn-wrap"><button class="tbtn" onclick="set('fp',1,this)">1x setahun</button><button class="tbtn" onclick="set('fp',2,this)">2x setahun</button><button class="tbtn" onclick="set('fp',3,this)">3x setahun</button></div>
+    </div>
+    <div class="q">
+      <button class="toggle-btn" onclick="togglePanel('harga-panel','harga-toggle-btn','💰 Sesuaikan Harga Pupuk Lokal (Opsional)')">💰 Sesuaikan Harga Pupuk Lokal (Opsional) ▼</button>
+      <div class="toggle-panel" id="harga-panel">
         <div class="scard">
-          <div class="bsub" style="margin-bottom:12px;">Kosongkan jika tidak tahu — akan pakai harga standar nasional. Tanya ke toko pertanian atau tetangga untuk harga lokal.</div>
-          <div class="bitem">
-            <div class="bname">Urea (N)</div>
-            <div class="irow"><input type="number" class="ifield" id="h-urea" placeholder="Default: 2.400"><span class="isat">Rp/kg</span></div>
+          <div class="bsub" style="margin-bottom:12px;">Kosongkan jika tidak tahu — akan pakai harga standar nasional.</div>
+          <div id="wrap-harga-tunggal">
+            <div class="bitem"><div class="bname">Urea (N)</div><div class="irow"><input type="number" class="ifield" id="h-urea" placeholder="Default: 2.400"><span class="isat">Rp/kg</span></div></div>
+            <div class="bitem"><div class="bname">SP-36 / TSP (P)</div><div class="irow"><input type="number" class="ifield" id="h-sp36" placeholder="Default: 3.200"><span class="isat">Rp/kg</span></div></div>
+            <div class="bitem"><div class="bname">MOP / KCl (K)</div><div class="irow"><input type="number" class="ifield" id="h-mop" placeholder="Default: 5.000"><span class="isat">Rp/kg</span></div></div>
+            <div class="bitem"><div class="bname">Dolomit (Mg)</div><div class="irow"><input type="number" class="ifield" id="h-dolomit" placeholder="Default: 800"><span class="isat">Rp/kg</span></div></div>
           </div>
-          <div class="bitem">
-            <div class="bname">SP-36 / TSP (P)</div>
-            <div class="irow"><input type="number" class="ifield" id="h-sp36" placeholder="Default: 3.200"><span class="isat">Rp/kg</span></div>
-          </div>
-          <div class="bitem">
-            <div class="bname">MOP / KCl (K)</div>
-            <div class="irow"><input type="number" class="ifield" id="h-mop" placeholder="Default: 5.000"><span class="isat">Rp/kg</span></div>
-          </div>
-          <div class="bitem">
-            <div class="bname">Dolomit (Mg)</div>
-            <div class="irow"><input type="number" class="ifield" id="h-dolomit" placeholder="Default: 800"><span class="isat">Rp/kg</span></div>
+          <div id="wrap-harga-npk" style="display:none">
+            <div class="bitem"><div class="bname">NPK Mutiara / NPK Phonska</div><div class="irow"><input type="number" class="ifield" id="h-npk" placeholder="Default: 4.500"><span class="isat">Rp/kg</span></div></div>
           </div>
         </div>
       </div>
     </div>
-
     <div class="err" id="err-pp"></div>
     <button class="btn-hitung" onclick="hitungPupuk()">🧪 Hitung Kebutuhan Pupuk</button>
-
     <div class="hasil" id="hasil-pp">
       <div class="divider"></div>
-      <div id="ss-pupuk">
-        <div class="hcard">
-          <div class="hcard-head"><span>🧪 Kebutuhan per Pemupukan</span></div>
-          <div class="hrow"><span class="hrow-l">Urea (N)</span><span class="hrow-r" id="pp-urea">-</span></div>
-          <div class="hrow"><span class="hrow-l">SP-36 / TSP (P)</span><span class="hrow-r" id="pp-sp36">-</span></div>
-          <div class="hrow"><span class="hrow-l">MOP / KCl (K)</span><span class="hrow-r" id="pp-mop">-</span></div>
-          <div class="hrow"><span class="hrow-l">Dolomit (Mg)</span><span class="hrow-r" id="pp-dolomit">-</span></div>
+      <div id="ss-area-pupuk">
+        <div id="hasil-tunggal">
+          <div class="hcard">
+            <div class="hcard-head"><span>🧪 Kebutuhan per Pemupukan (Pupuk Tunggal)</span></div>
+            <div class="hrow"><span class="hrow-l">Urea (N)</span><span class="hrow-r" id="pp-urea">-</span></div>
+            <div class="hrow"><span class="hrow-l">SP-36 / TSP (P)</span><span class="hrow-r" id="pp-sp36">-</span></div>
+            <div class="hrow"><span class="hrow-l">MOP / KCl (K)</span><span class="hrow-r" id="pp-mop">-</span></div>
+            <div class="hrow"><span class="hrow-l">Dolomit (Mg)</span><span class="hrow-r" id="pp-dolomit">-</span></div>
+          </div>
         </div>
-        <div class="hutama">
-          <div class="hutama-label">Estimasi Biaya per Pemupukan</div>
-          <div class="hutama-angka" id="pp-biaya">-</div>
-          <div class="hutama-sub" id="pp-biaya-sub">-</div>
+        <div id="hasil-npk" style="display:none">
+          <div class="hcard">
+            <div class="hcard-head"><span>🧪 Kebutuhan per Pemupukan (NPK Majemuk)</span></div>
+            <div class="hrow"><span class="hrow-l">NPK (15-15-15)</span><span class="hrow-r" id="pp-npk">-</span></div>
+            <div class="hrow"><span class="hrow-l">Dolomit (Mg)</span><span class="hrow-r" id="pp-dolomit-npk">-</span></div>
+          </div>
         </div>
+        <div class="hutama"><div class="hutama-label">Estimasi Biaya per Pemupukan</div><div class="hutama-angka" id="pp-biaya">-</div><div class="hutama-sub" id="pp-biaya-sub">-</div></div>
         <div class="saran" id="pp-saran"></div>
       </div>
-      <div style="background:var(--coklat-muda);border-radius:12px;padding:11px 14px;font-size:12px;font-weight:600;color:var(--coklat);text-align:center;margin-bottom:10px;">📸 Mau simpan? Tekan <strong>Power + Volume Atas</strong> untuk screenshot</div>
+      <button class="btn-download" onclick="downloadLaporan('pupuk')">📥 Simpan Laporan ke Galeri</button>
       <button class="btn-ulang" onclick="ulangPupuk()">🔄 Hitung Ulang</button>
     </div>
   </div>
 
   <!-- ===== BEP ===== -->
   <div class="kalk" id="kalk-bep">
-    <div class="kalk-header">
-      <button class="back-btn" onclick="kembali()">←</button>
-      <span class="kalk-title">📊 Hitung Balik Modal</span>
-    </div>
+    <div class="kalk-header"><button class="back-btn" onclick="kembali()">←</button><span class="kalk-title">📊 Hitung Balik Modal</span></div>
     <div class="asisten">🤖 Kita hitung kira-kira berapa lama sampai uang yang kamu keluarkan untuk kebun ini kembali!</div>
     <div class="q">
-      <span class="qlabel">Total modal yang sudah dikeluarkan</span>
-      <span class="qhint">Bibit, pengolahan lahan, perawatan sampai sekarang</span>
-      <div class="tbtn-wrap" id="g-modal">
-        <button class="tbtn" onclick="set('modal',10000000,this,'g-modal')">Rp 10 jt</button>
-        <button class="tbtn" onclick="set('modal',25000000,this,'g-modal')">Rp 25 jt</button>
-        <button class="tbtn" onclick="set('modal',50000000,this,'g-modal')">Rp 50 jt</button>
-        <button class="tbtn" onclick="set('modal',100000000,this,'g-modal')">Rp 100 jt</button>
-      </div>
+      <span class="qlabel">Total modal yang sudah dikeluarkan</span><span class="qhint">Bibit, pengolahan lahan, perawatan sampai sekarang</span>
+      <div class="tbtn-wrap" id="g-modal"><button class="tbtn" onclick="set('modal',10000000,this,'g-modal')">Rp 10 jt</button><button class="tbtn" onclick="set('modal',25000000,this,'g-modal')">Rp 25 jt</button><button class="tbtn" onclick="set('modal',50000000,this,'g-modal')">Rp 50 jt</button><button class="tbtn" onclick="set('modal',100000000,this,'g-modal')">Rp 100 jt</button></div>
       <div class="irow"><input type="number" class="ifield" id="bep-modal-c" placeholder="Atau ketik..." oninput="setC('modal',this.value,'g-modal')"><span class="isat">Rp</span></div>
     </div>
     <div class="q">
       <span class="qlabel">Keuntungan bersih per bulan sekarang</span>
-      <div class="tbtn-wrap" id="g-profit">
-        <button class="tbtn" onclick="set('profit',500000,this,'g-profit')">Rp 500rb</button>
-        <button class="tbtn" onclick="set('profit',1000000,this,'g-profit')">Rp 1 jt</button>
-        <button class="tbtn" onclick="set('profit',2000000,this,'g-profit')">Rp 2 jt</button>
-        <button class="tbtn" onclick="set('profit',5000000,this,'g-profit')">Rp 5 jt</button>
-      </div>
+      <div class="tbtn-wrap" id="g-profit"><button class="tbtn" onclick="set('profit',500000,this,'g-profit')">Rp 500rb</button><button class="tbtn" onclick="set('profit',1000000,this,'g-profit')">Rp 1 jt</button><button class="tbtn" onclick="set('profit',2000000,this,'g-profit')">Rp 2 jt</button><button class="tbtn" onclick="set('profit',5000000,this,'g-profit')">Rp 5 jt</button></div>
       <div class="irow"><input type="number" class="ifield" id="bep-profit-c" placeholder="Atau ketik..." oninput="setC('profit',this.value,'g-profit')"><span class="isat">Rp/bln</span></div>
+    </div>
+    <div class="q">
+      <span class="qlabel">Perkiraan kenaikan biaya per tahun</span>
+      <span class="qhint">💡 Biaya pupuk, upah, dll biasanya naik 5–10% per tahun karena inflasi. Pilih 0% jika ingin hitung sederhana saja.</span>
+      <div class="tbtn-wrap" id="g-inflasi"><button class="tbtn" onclick="set('inflasi',0,this,'g-inflasi')">0% (Tetap)</button><button class="tbtn" onclick="set('inflasi',0.05,this,'g-inflasi')">5% / tahun</button><button class="tbtn" onclick="set('inflasi',0.08,this,'g-inflasi')">8% / tahun</button><button class="tbtn" onclick="set('inflasi',0.1,this,'g-inflasi')">10% / tahun</button></div>
     </div>
     <div class="err" id="err-bep"></div>
     <button class="btn-hitung" onclick="hitungBEP()">📊 Hitung Kapan Balik Modal</button>
     <div class="hasil" id="hasil-bep">
       <div class="divider"></div>
-      <div id="ss-bep">
-        <div class="hutama">
-          <div class="hutama-label">Perkiraan Waktu Balik Modal</div>
-          <div class="hutama-angka" id="bep-waktu">-</div>
-          <div class="hutama-sub" id="bep-sub">-</div>
-        </div>
+      <div id="ss-area-bep">
+        <div class="hutama"><div class="hutama-label">Perkiraan Waktu Balik Modal</div><div class="hutama-angka" id="bep-waktu">-</div><div class="hutama-sub" id="bep-sub">-</div></div>
         <div class="hcard">
           <div class="hcard-head"><span>📋 Rincian BEP</span></div>
           <div class="hrow"><span class="hrow-l">Total Modal</span><span class="hrow-r" id="bep-modal">-</span></div>
           <div class="hrow"><span class="hrow-l">Untung Bersih/Bulan</span><span class="hrow-r" id="bep-profit">-</span></div>
           <div class="hrow"><span class="hrow-l">Untung Bersih/Tahun</span><span class="hrow-r" id="bep-tahun">-</span></div>
+          <div class="hrow"><span class="hrow-l">Asumsi Inflasi</span><span class="hrow-r" id="bep-inflasi-val">-</span></div>
           <div class="hrow"><span class="hrow-l">Balik Modal Dalam</span><span class="hrow-r" id="bep-bulan">-</span></div>
         </div>
         <div class="saran" id="bep-saran"></div>
       </div>
-      <div style="background:var(--coklat-muda);border-radius:12px;padding:11px 14px;font-size:12px;font-weight:600;color:var(--coklat);text-align:center;margin-bottom:10px;">📸 Mau simpan? Tekan <strong>Power + Volume Atas</strong> untuk screenshot</div>
+      <button class="btn-download" onclick="downloadLaporan('bep')">📥 Simpan Laporan ke Galeri</button>
       <button class="btn-ulang" onclick="ulang('kalk-bep','hasil-bep','err-bep')">🔄 Hitung Ulang</button>
     </div>
+  </div>
+
+  <!-- ===== KALENDER PEMUPUKAN ===== -->
+  <div class="kalk" id="kalk-kalender">
+    <div class="kalk-header"><button class="back-btn" onclick="kembali()">←</button><span class="kalk-title">📅 Kalender Pemupukan</span></div>
+    <div class="asisten">🤖 Masukkan tanggal terakhir kamu memupuk, nanti saya hitung kapan jadwal pupuk berikutnya!</div>
+    <div class="q">
+      <span class="qlabel">Tanggal terakhir memupuk</span>
+      <div class="irow"><input type="date" class="ifield" id="kal-tgl-terakhir"></div>
+    </div>
+    <div class="q">
+      <span class="qlabel">Berapa kali pemupukan setahun?</span>
+      <div class="tbtn-wrap"><button class="tbtn" onclick="set('kal-frek',12,this)">1x setahun (12 bln)</button><button class="tbtn" onclick="set('kal-frek',6,this)">2x setahun (6 bln)</button><button class="tbtn" onclick="set('kal-frek',4,this)">3x setahun (4 bln)</button></div>
+    </div>
+    <div class="err" id="err-kal"></div>
+    <button class="btn-hitung" onclick="hitungKalender()">📅 Hitung Jadwal Pemupukan</button>
+    <div class="hasil" id="hasil-kal">
+      <div class="divider"></div>
+      <div class="kalender-card">
+        <div class="kalender-title">🗓️ Jadwal Pemupukan Kebunmu</div>
+        <div class="kalender-item"><span class="kalender-label">Terakhir Memupuk</span><span class="kalender-val" id="kal-last">-</span></div>
+        <div class="kalender-item"><span class="kalender-label">Pemupukan Berikutnya</span><span class="kalender-val" id="kal-next">-</span></div>
+        <div class="kalender-item"><span class="kalender-label">Sisa Hari</span><span class="kalender-val" id="kal-sisa">-</span></div>
+        <div class="kalender-item"><span class="kalender-label">Pemupukan Ke-3</span><span class="kalender-val" id="kal-next2">-</span></div>
+        <div class="kalender-item"><span class="kalender-label">Pemupukan Ke-4</span><span class="kalender-val" id="kal-next3">-</span></div>
+      </div>
+      <div class="saran" id="kal-saran"></div>
+      <button class="btn-ulang" onclick="ulang('kalk-kalender','hasil-kal','err-kal')">🔄 Hitung Ulang</button>
+    </div>
+  </div>
+
+  <!-- ===== PANDUAN VISUAL DAUN ===== -->
+  <div class="kalk" id="kalk-panduan">
+    <div class="kalk-header"><button class="back-btn" onclick="kembali()">←</button><span class="kalk-title">🍃 Panduan Kesehatan Daun</span></div>
+    <div class="asisten">🤖 Lihat gejala pada daun sawit kamu, lalu cocokkan dengan panduan di bawah ini untuk tahu apa yang kurang!</div>
+    <div class="panduan-item"><div class="panduan-icon">🟡</div><div><div class="panduan-nama">Daun Menguning (Klorosis)</div><div class="panduan-gejala">Gejala: Daun tua menguning dari ujung, dimulai dari pelepah bawah</div><div class="panduan-solusi">Penyebab: <strong>Kekurangan Nitrogen (N)</strong><br>Solusi: Tambah dosis <strong>Urea</strong> pada pemupukan berikutnya. Dosis tambahan: 0,5–1 kg/pohon. Waktu terbaik: awal musim hujan.</div></div></div>
+    <div class="panduan-item"><div class="panduan-icon">🟤</div><div><div class="panduan-nama">Ujung Daun Coklat / Gosong</div><div class="panduan-gejala">Gejala: Ujung anak daun berwarna coklat seperti terbakar, dimulai dari daun tua</div><div class="panduan-solusi">Penyebab: <strong>Kekurangan Kalium (K)</strong><br>Solusi: Tambah dosis <strong>MOP / KCl</strong>. Dosis tambahan: 1–1,5 kg/pohon. Jangan berlebihan karena bisa memblokir penyerapan Magnesium.</div></div></div>
+    <div class="panduan-item"><div class="panduan-icon">🟢</div><div><div class="panduan-nama">Daun Muda Pucat / Hijau Muda</div><div class="panduan-gejala">Gejala: Daun muda (pucuk) berwarna hijau pucat atau kekuningan, daun tua masih hijau normal</div><div class="panduan-solusi">Penyebab: <strong>Kekurangan Besi (Fe) atau Sulfur (S)</strong><br>Solusi: Periksa pH tanah. Jika tanah terlalu asam (gambut), tambah <strong>Dolomit</strong> untuk menaikkan pH agar penyerapan besi lebih baik.</div></div></div>
+    <div class="panduan-item"><div class="panduan-icon">🔴</div><div><div class="panduan-nama">Bercak Oranye / Merah pada Daun</div><div class="panduan-gejala">Gejala: Muncul bercak-bercak oranye atau merah kecoklatan pada permukaan daun</div><div class="panduan-solusi">Penyebab: <strong>Kekurangan Magnesium (Mg)</strong><br>Solusi: Tambah dosis <strong>Dolomit (Kieserit)</strong>. Dosis tambahan: 1–2 kg/pohon. Sangat umum terjadi di tanah gambut yang asam.</div></div></div>
+    <div class="panduan-item"><div class="panduan-icon">⚪</div><div><div class="panduan-nama">Daun Kecil &amp; Keriput (Frond Kecil)</div><div class="panduan-gejala">Gejala: Anak daun lebih kecil dari normal, tampak keriput atau tidak berkembang sempurna</div><div class="panduan-solusi">Penyebab: <strong>Kekurangan Boron (B)</strong><br>Solusi: Aplikasikan <strong>Borax</strong> (pupuk Boron). Dosis: 0,1–0,2 kg/pohon/tahun. Jangan berlebihan karena Boron mudah racun jika terlalu banyak.</div></div></div>
+    <div class="panduan-item"><div class="panduan-icon">🟠</div><div><div class="panduan-nama">Buah Kecil &amp; Sedikit Minyak</div><div class="panduan-gejala">Gejala: Tandan buah segar (TBS) lebih kecil dari biasanya, rendemen minyak rendah</div><div class="panduan-solusi">Penyebab: <strong>Kekurangan Fosfor (P)</strong><br>Solusi: Tambah dosis <strong>SP-36 atau TSP</strong>. Dosis tambahan: 0,5–1 kg/pohon. Fosfor penting untuk pembentukan buah dan biji.</div></div></div>
+    <div style="background:var(--coklat-muda);border-radius:12px;padding:12px 14px;font-size:12px;font-weight:600;color:var(--coklat);line-height:1.6;margin-top:8px;">
+      ⚠️ <strong>Catatan Penting:</strong> Panduan ini adalah panduan umum. Untuk diagnosis yang akurat, lakukan uji tanah dan uji daun di laboratorium pertanian setempat atau hubungi penyuluh pertanian.
+    </div>
+    <div style="height:16px;"></div>
+    <button class="btn-ulang" onclick="kembali()">← Kembali ke Menu</button>
+  </div>
+
+  <!-- ===== KAMUS ISTILAH SAWIT ===== -->
+  <div class="kalk" id="kalk-kamus">
+    <div class="kalk-header"><button class="back-btn" onclick="kembali()">←</button><span class="kalk-title">📖 Kamus Istilah Sawit</span></div>
+    <div class="asisten">🤖 Penjelasan istilah-istilah yang sering dipakai di kebun sawit. Cocok untuk petani baru!</div>
+    <div class="kamus-item"><div class="kamus-term">🌱 TBS (Tandan Buah Segar)</div><div class="kamus-def">Buah sawit yang baru dipanen dan belum diolah. Harga TBS ditetapkan oleh pemerintah daerah setiap bulan berdasarkan harga CPO di pabrik.</div></div>
+    <div class="kamus-item"><div class="kamus-term">🌿 Piringan</div><div class="kamus-def">Area lingkaran di sekitar batang pohon sawit yang dibersihkan dari gulma. Radius piringan sekitar 1–2 meter. Pupuk harus ditebar di area piringan ini agar diserap akar dengan baik.</div></div>
+    <div class="kamus-item"><div class="kamus-term">✂️ Penunasan (Pruning)</div><div class="kamus-def">Kegiatan memotong pelepah daun sawit yang sudah tua, kering, atau tidak produktif. Penunasan yang benar meningkatkan produksi buah dan memudahkan panen. Jangan memotong terlalu banyak pelepah hijau sekaligus.</div></div>
+    <div class="kamus-item"><div class="kamus-term">🌸 Kastrasi</div><div class="kamus-def">Pembuangan bunga atau buah pertama pada pohon sawit muda (umur 1–2 tahun). Tujuannya agar energi pohon difokuskan untuk pertumbuhan vegetatif (daun dan batang) dulu, sehingga pohon lebih kuat dan produksi jangka panjang lebih tinggi.</div></div>
+    <div class="kamus-item"><div class="kamus-term">🔄 Replanting</div><div class="kamus-def">Peremajaan kebun sawit dengan menebang pohon tua (biasanya di atas 25 tahun) dan menanam bibit baru. Pohon sawit tua produksinya menurun drastis, sehingga replanting perlu dilakukan untuk menjaga produktivitas kebun.</div></div>
+    <div class="kamus-item"><div class="kamus-term">📊 Rendemen / OER (Oil Extraction Rate)</div><div class="kamus-def">Persentase minyak sawit (CPO) yang bisa dihasilkan dari TBS. Rendemen normal kebun rakyat sekitar 18–22%. Semakin tinggi rendemen, semakin bagus kualitas buah dan semakin mahal harga yang diterima.</div></div>
+    <div class="kamus-item"><div class="kamus-term">💧 Kekeringan Fisiologis</div><div class="kamus-def">Kondisi di mana pohon sawit tidak bisa menyerap air meskipun tanah cukup lembab. Biasanya terjadi karena akar rusak, pH tanah terlalu rendah (asam), atau kekurangan unsur hara tertentu.</div></div>
+    <div class="kamus-item"><div class="kamus-term">🌾 Musim Trek</div><div class="kamus-def">Periode di mana produksi TBS menurun drastis, biasanya terjadi pada bulan Februari–April. Penyebabnya adalah penyerbukan yang kurang optimal pada musim sebelumnya. Saat musim trek, petani perlu mengurangi estimasi pendapatan.</div></div>
+    <div class="kamus-item"><div class="kamus-term">🏭 PKS (Pabrik Kelapa Sawit)</div><div class="kamus-def">Pabrik yang mengolah TBS menjadi CPO (minyak sawit mentah) dan kernel (inti sawit). TBS harus dikirim ke PKS maksimal 24 jam setelah dipanen agar kualitas dan rendemennya tidak turun.</div></div>
+    <div class="kamus-item"><div class="kamus-term">📋 BEP (Break Even Point)</div><div class="kamus-def">Titik balik modal — kondisi di mana total pendapatan sudah sama dengan total modal yang dikeluarkan. Setelah BEP tercapai, semua keuntungan berikutnya adalah keuntungan murni.</div></div>
+    <div style="height:16px;"></div>
+    <button class="btn-ulang" onclick="kembali()">← Kembali ke Menu</button>
   </div>
 
 </div>
 <div class="footer">🌴 Sawit Pintar • Dibuat untuk petani Indonesia<br>Dosis pupuk berdasarkan standar PPKS (Pusat Penelitian Kelapa Sawit)</div>
 
+<!-- CANVAS TERSEMBUNYI UNTUK EKSPOR LAPORAN -->
+<canvas id="laporan-canvas" style="display:none;"></canvas>
+
 <script>
 // ===== STATE =====
 const D = {};
-let frek = 0;
-let upahMode = '';
+let frek = 0, upahMode = '';
 
 // ===== SET NILAI =====
 function set(key, val, el, grupId) {
@@ -587,6 +501,11 @@ function set(key, val, el, grupId) {
     el.closest('.tbtn-wrap').querySelectorAll('.tbtn').forEach(b => b.classList.remove('on'));
   }
   el.classList.add('on');
+  // Jika pilih jenis pupuk, tampilkan/sembunyikan input harga yang sesuai
+  if (key === 'jp') {
+    document.getElementById('wrap-harga-tunggal').style.display = val === 'tunggal' ? 'block' : 'none';
+    document.getElementById('wrap-harga-npk').style.display = val === 'npk' ? 'block' : 'none';
+  }
 }
 function setC(key, val, grupId) {
   D[key] = parseFloat(val) || 0;
@@ -611,16 +530,16 @@ function setUpah(mode) {
   document.getElementById('wrap-upah-bor').style.display = mode === 'bor' ? 'block' : 'none';
 }
 
-// ===== TOGGLE HARGA PUPUK =====
-function toggleHarga() {
-  const panel = document.getElementById('harga-panel');
-  const btn = document.querySelector('.harga-toggle');
+// ===== TOGGLE PANEL =====
+function togglePanel(panelId, btnId, label) {
+  const panel = document.getElementById(panelId);
+  const btn = document.getElementById(btnId) || document.querySelector(`[onclick*="${panelId}"]`);
   if (panel.classList.contains('show')) {
     panel.classList.remove('show');
-    btn.textContent = '💰 Sesuaikan Harga Pupuk Lokal (Opsional) ▼';
+    if (btn) btn.textContent = label + ' ▼';
   } else {
     panel.classList.add('show');
-    btn.textContent = '💰 Sesuaikan Harga Pupuk Lokal (Opsional) ▲';
+    if (btn) btn.textContent = label + ' ▲';
   }
 }
 
@@ -646,6 +565,11 @@ function rp(n) {
   return 'Rp ' + n.toLocaleString('id');
 }
 function rpFull(n) { return 'Rp ' + Math.round(n).toLocaleString('id'); }
+function fmtTgl(d) {
+  const hari = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+  const bln = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
+  return hari[d.getDay()] + ', ' + d.getDate() + ' ' + bln[d.getMonth()] + ' ' + d.getFullYear();
+}
 
 // ===== ERR =====
 function err(id, msg) {
@@ -655,6 +579,28 @@ function err(id, msg) {
   el.scrollIntoView({behavior:'smooth', block:'center'});
 }
 function clearErr(id) { document.getElementById(id).style.display = 'none'; }
+
+// ===== ZAKAT =====
+let zakatMode = null;
+function toggleZakat(show) {
+  zakatMode = show;
+  document.getElementById('btn-zakat-ya').classList.toggle('on', show);
+  document.getElementById('btn-zakat-tidak').classList.toggle('on', !show);
+  const box = document.getElementById('r-zakat-box');
+  if (show) {
+    const bersih = parseFloat(document.getElementById('r-bersih').textContent.replace(/[^0-9]/g,'')) || 0;
+    const zakat = bersih * 0.025;
+    document.getElementById('z-bersih').textContent = rpFull(bersih);
+    document.getElementById('z-nominal').textContent = rpFull(zakat);
+    // Nisab zakat pertanian = 653 kg beras, estimasi ~Rp 6.500.000
+    document.getElementById('z-ket').textContent = bersih >= 6500000
+      ? '✅ Sudah mencapai nisab — wajib zakat'
+      : '💡 Belum mencapai nisab (Rp 6,5 jt) — belum wajib';
+    box.style.display = 'block';
+  } else {
+    box.style.display = 'none';
+  }
+}
 
 // ===== HITUNG UNTUNG =====
 function hitungUntung() {
@@ -733,13 +679,14 @@ function hitungUntung() {
     ? `🤖 <strong>${bulan} ${tahun}</strong> kebunmu untung <strong>${rp(bersih)}</strong>!`
     : `🤖 <strong>${bulan} ${tahun}</strong> kebunmu merugi <strong>${rp(Math.abs(bersih))}</strong>. Lihat grafik untuk tahu mana yang perlu ditekan.`;
 
+  // Reset zakat
+  document.getElementById('r-zakat-box').style.display = 'none';
+  document.getElementById('btn-zakat-ya').classList.remove('on');
+  document.getElementById('btn-zakat-tidak').classList.remove('on');
+  zakatMode = null;
+
   document.getElementById('hasil-u').classList.add('show');
-  simpanRiwayat({
-    id: Date.now() + '_' + Math.random().toString(36).substr(2,4),
-    bulan, tahun, totalKg, pendapatan, totalKeluar, bersih,
-    upah, transport, pupuk, rawat, lain,
-    margin: parseFloat(margin)
-  });
+  simpanRiwayat({id:Date.now()+'_'+Math.random().toString(36).substr(2,4), bulan, tahun, totalKg, pendapatan, totalKeluar, bersih, upah, transport, pupuk, rawat, lain, margin:parseFloat(margin)});
   renderRiwayat();
   setTimeout(() => document.getElementById('hasil-u').scrollIntoView({behavior:'smooth', block:'start'}), 100);
 }
@@ -753,8 +700,9 @@ function ulangUntung() {
   document.getElementById('wrap-2x').style.display = 'none';
   document.getElementById('wrap-upah-kg').style.display = 'none';
   document.getElementById('wrap-upah-bor').style.display = 'none';
+  document.getElementById('r-zakat-box').style.display = 'none';
   clearErr('err-u');
-  frek = 0; upahMode = '';
+  frek = 0; upahMode = ''; zakatMode = null;
   ['harga','h1','h2'].forEach(k => delete D[k]);
   window.scrollTo({top:0, behavior:'smooth'});
 }
@@ -766,38 +714,21 @@ function tampilNotif(judul, pesan, tombolTeks) {
   const el = document.createElement('div');
   el.id = 'notif-inline';
   el.style.cssText = 'background:#fef3c7;border:2px solid #f5c842;border-radius:16px;padding:18px 16px;margin:16px 0;font-family:inherit;';
-  el.innerHTML = `
-    <div style="font-size:15px;font-weight:800;color:#1a4a2e;margin-bottom:8px;">${judul}</div>
-    <div style="font-size:13px;font-weight:600;color:#374151;line-height:1.7;margin-bottom:14px;">${pesan}</div>
-    <button onclick="document.getElementById('notif-inline').remove()" style="width:100%;background:#1a4a2e;color:white;border:none;border-radius:10px;padding:12px;font-size:13px;font-weight:800;font-family:inherit;cursor:pointer;">${tombolTeks}</button>`;
+  el.innerHTML = `<div style="font-size:15px;font-weight:800;color:#1a4a2e;margin-bottom:8px;">${judul}</div><div style="font-size:13px;font-weight:600;color:#374151;line-height:1.7;margin-bottom:14px;">${pesan}</div><button onclick="document.getElementById('notif-inline').remove()" style="width:100%;background:#1a4a2e;color:white;border:none;border-radius:10px;padding:12px;font-size:13px;font-weight:800;font-family:inherit;cursor:pointer;">${tombolTeks}</button>`;
   const hasilEl = document.getElementById('hasil-u');
   hasilEl.parentNode.insertBefore(el, hasilEl.nextSibling);
   el.scrollIntoView({behavior:'smooth', block:'center'});
 }
 
 // ===== RIWAYAT =====
-function getRiwayat() {
-  try { return JSON.parse(localStorage.getItem('sp_riwayat')) || []; }
-  catch(e) { return []; }
-}
+function getRiwayat() { try { return JSON.parse(localStorage.getItem('sp_riwayat')) || []; } catch(e) { return []; } }
 function simpanRiwayat(entri) {
   let data = getRiwayat();
-  if (data.length >= 24) {
-    tampilNotif(
-      '📦 Catatan Panenmu Sudah Penuh',
-      'Kamu sudah menyimpan <strong>24 data panen</strong> — batas maksimal 1 tahun. Hasil hitungan ini tetap tampil, tapi tidak masuk riwayat.<br><br>Hapus beberapa data lama di riwayat bawah dulu untuk bisa mencatat panen baru.',
-      'Oke, Saya Mengerti'
-    );
-    return;
-  }
+  if (data.length >= 24) { tampilNotif('📦 Catatan Panenmu Sudah Penuh','Kamu sudah menyimpan <strong>24 data panen</strong>. Hapus beberapa data lama dulu.','Oke, Saya Mengerti'); return; }
   data.push(entri);
   localStorage.setItem('sp_riwayat', JSON.stringify(data));
 }
-function hapusRiwayat(id) {
-  const data = getRiwayat().filter(d => d.id !== id);
-  localStorage.setItem('sp_riwayat', JSON.stringify(data));
-  renderRiwayat();
-}
+function hapusRiwayat(id) { const data = getRiwayat().filter(d => d.id !== id); localStorage.setItem('sp_riwayat', JSON.stringify(data)); renderRiwayat(); }
 function renderRiwayat() {
   const data = getRiwayat();
   const wrap = document.getElementById('riwayat-untung');
@@ -809,144 +740,116 @@ function renderRiwayat() {
 function _renderGrafik(data) {
   const svgEl = document.getElementById('svg-tren');
   const W = svgEl.parentElement.offsetWidth || 320;
-  const H = 120;
-  const pad = { top:16, right:16, bottom:8, left:48 };
-  const gW = W - pad.left - pad.right;
-  const gH = H - pad.top - pad.bottom;
+  const H = 120, pad = {top:16,right:16,bottom:8,left:48};
+  const gW = W - pad.left - pad.right, gH = H - pad.top - pad.bottom;
   const vals = data.map(d => d.bersih);
-  const minV = Math.min(...vals);
-  const maxV = Math.max(...vals);
-  const range = maxV - minV || 1;
+  const minV = Math.min(...vals), maxV = Math.max(...vals), range = maxV - minV || 1;
   const xStep = gW / Math.max(data.length - 1, 1);
-  const pts = data.map((d, i) => {
-    const x = pad.left + i * xStep;
-    const y = pad.top + gH - ((d.bersih - minV) / range) * gH;
-    return {x, y, d};
-  });
+  const pts = data.map((d,i) => ({x:pad.left+i*xStep, y:pad.top+gH-((d.bersih-minV)/range)*gH, d}));
   const polyline = pts.map(p => `${p.x},${p.y}`).join(' ');
-  const areaPath = `M${pts[0].x},${pad.top+gH} ` + pts.map(p => `L${p.x},${p.y}`).join(' ') + ` L${pts[pts.length-1].x},${pad.top+gH} Z`;
-  let svgHtml = `
-    <defs><linearGradient id="grd" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#2d7a4f" stop-opacity="0.25"/><stop offset="100%" stop-color="#2d7a4f" stop-opacity="0"/></linearGradient></defs>
-    <path d="${areaPath}" fill="url(#grd)"/>
-    <polyline points="${polyline}" fill="none" stroke="#2d7a4f" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>`;
-  pts.forEach(p => {
-    svgHtml += `<circle cx="${p.x}" cy="${p.y}" r="4" fill="${p.d.bersih >= 0 ? '#2d7a4f' : '#e53e3e'}" stroke="white" stroke-width="2"/>`;
-  });
+  const areaPath = `M${pts[0].x},${pad.top+gH} `+pts.map(p=>`L${p.x},${p.y}`).join(' ')+` L${pts[pts.length-1].x},${pad.top+gH} Z`;
+  let svgHtml = `<defs><linearGradient id="grd" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#2d7a4f" stop-opacity="0.25"/><stop offset="100%" stop-color="#2d7a4f" stop-opacity="0"/></linearGradient></defs><path d="${areaPath}" fill="url(#grd)"/><polyline points="${polyline}" fill="none" stroke="#2d7a4f" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>`;
+  pts.forEach(p => { svgHtml += `<circle cx="${p.x}" cy="${p.y}" r="4" fill="${p.d.bersih>=0?'#2d7a4f':'#e53e3e'}" stroke="white" stroke-width="2"/>`; });
   const fmt = n => { if(Math.abs(n)>=1e6) return (n/1e6).toFixed(1)+'jt'; if(Math.abs(n)>=1e3) return Math.round(n/1e3)+'rb'; return n; };
-  const yLabels = [minV, (minV+maxV)/2, maxV];
-  yLabels.forEach((v, i) => {
-    const y = pad.top + gH - ((v - minV) / range) * gH;
-    svgHtml += `<text x="${pad.left - 4}" y="${y + 4}" text-anchor="end" font-size="9" fill="#6b7280" font-weight="600">${fmt(v)}</text>`;
-    svgHtml += `<line x1="${pad.left}" y1="${y}" x2="${pad.left + gW}" y2="${y}" stroke="#f3f4f6" stroke-width="1"/>`;
-  });
+  [minV,(minV+maxV)/2,maxV].forEach(v => { const y=pad.top+gH-((v-minV)/range)*gH; svgHtml+=`<text x="${pad.left-4}" y="${y+4}" text-anchor="end" font-size="9" fill="#6b7280" font-weight="600">${fmt(v)}</text><line x1="${pad.left}" y1="${y}" x2="${pad.left+gW}" y2="${y}" stroke="#f3f4f6" stroke-width="1"/>`; });
   svgEl.innerHTML = svgHtml;
   svgEl.setAttribute('viewBox', `0 0 ${W} ${H}`);
-  const labelsEl = document.getElementById('svg-labels');
-  labelsEl.innerHTML = data.map(d => `<span style="font-size:9px;font-weight:700;color:#6b7280">${d.bulan.substring(0,3)}</span>`).join('');
+  document.getElementById('svg-labels').innerHTML = data.map(d=>`<span style="font-size:9px;font-weight:700;color:#6b7280">${d.bulan.substring(0,3)}</span>`).join('');
 }
 function _renderList(data) {
   let listHtml = '';
-  [...data].reverse().forEach((d, i, arr) => {
-    const prev = arr[i + 1];
+  [...data].reverse().forEach((d,i,arr) => {
+    const prev = arr[i+1];
     let badge = '';
-    if (prev) {
-      const diff = d.bersih - prev.bersih;
-      if (diff > 0) badge = `<span class="riwayat-item-badge badge-naik">↑ ${rp(diff)}</span>`;
-      else if (diff < 0) badge = `<span class="riwayat-item-badge badge-turun">↓ ${rp(Math.abs(diff))}</span>`;
-      else badge = `<span class="riwayat-item-badge badge-sama">→ Sama</span>`;
-    }
-    listHtml += `
-      <div class="riwayat-item">
-        <div class="riwayat-item-top">
-          <span class="riwayat-item-nama">${d.bulan} ${d.tahun}</span>
-          <div style="display:flex;align-items:center;gap:6px">
-            ${badge}
-            <button class="btn-hapus-item" onclick="hapusRiwayat('${d.id}')">🗑</button>
-          </div>
-        </div>
-        <div class="riwayat-grid">
-          <div class="riwayat-stat"><div class="riwayat-stat-label">TOTAL PANEN</div><div class="riwayat-stat-val">${d.totalKg.toLocaleString('id')} kg</div></div>
-          <div class="riwayat-stat"><div class="riwayat-stat-label">PENDAPATAN</div><div class="riwayat-stat-val">${rp(d.pendapatan)}</div></div>
-          <div class="riwayat-stat"><div class="riwayat-stat-label">PENGELUARAN</div><div class="riwayat-stat-val merah">${rp(d.totalKeluar)}</div></div>
-          <div class="riwayat-stat"><div class="riwayat-stat-label">UNTUNG BERSIH</div><div class="riwayat-stat-val ${d.bersih < 0 ? 'merah' : ''}">${rp(d.bersih)}</div></div>
-        </div>
-      </div>`;
+    if (prev) { const diff = d.bersih-prev.bersih; badge = diff>0?`<span class="riwayat-item-badge badge-naik">↑ ${rp(diff)}</span>`:diff<0?`<span class="riwayat-item-badge badge-turun">↓ ${rp(Math.abs(diff))}</span>`:`<span class="riwayat-item-badge badge-sama">→ Sama</span>`; }
+    listHtml += `<div class="riwayat-item"><div class="riwayat-item-top"><span class="riwayat-item-nama">${d.bulan} ${d.tahun}</span><div style="display:flex;align-items:center;gap:6px">${badge}<button class="btn-hapus-item" onclick="hapusRiwayat('${d.id}')">🗑</button></div></div><div class="riwayat-grid"><div class="riwayat-stat"><div class="riwayat-stat-label">TOTAL PANEN</div><div class="riwayat-stat-val">${d.totalKg.toLocaleString('id')} kg</div></div><div class="riwayat-stat"><div class="riwayat-stat-label">PENDAPATAN</div><div class="riwayat-stat-val">${rp(d.pendapatan)}</div></div><div class="riwayat-stat"><div class="riwayat-stat-label">PENGELUARAN</div><div class="riwayat-stat-val merah">${rp(d.totalKeluar)}</div></div><div class="riwayat-stat"><div class="riwayat-stat-label">UNTUNG BERSIH</div><div class="riwayat-stat-val ${d.bersih<0?'merah':''}">${rp(d.bersih)}</div></div></div></div>`;
   });
   document.getElementById('list-riwayat').innerHTML = listHtml;
 }
 
 // ===== HITUNG PANEN =====
 function hitungPanen() {
-  const luas = D['luas'], umur = D['umur'], rawat = D['rawat'];
-  if (!luas || !umur || !rawat) { err('err-p', 'Lengkapi semua pilihan dulu ya!'); return; }
+  const luas = D['luas'], umur = D['umur'], rawat = D['rawat'], musim = D['musim'];
+  if (!luas || !umur || !rawat || musim === undefined) { err('err-p', 'Lengkapi semua pilihan dulu ya! Jangan lupa pilih <strong>musim saat ini</strong>.'); return; }
   const yMap = {muda:10000, prima:20000, dewasa:18000, tua:13000};
   const yPerHa = yMap[umur];
   const pertahun = luas * yPerHa * rawat;
-  const perbulan = pertahun / 12;
+  const perbulan = (pertahun / 12) * musim;
+  const musimLabel = musim === 1.15 ? '🌟 Puncak (+15%)' : musim === 1 ? '😊 Normal' : '😟 Trek (-30%)';
   clearErr('err-p');
-  document.getElementById('p-bulan').textContent = perbulan.toLocaleString('id') + ' kg';
+  document.getElementById('p-bulan').textContent = Math.round(perbulan).toLocaleString('id') + ' kg';
   document.getElementById('p-ton').textContent = '≈ ' + (perbulan/1000).toFixed(2) + ' ton per bulan';
   document.getElementById('p-luas').textContent = luas + ' Ha';
   document.getElementById('p-potensi').textContent = (yPerHa/1000).toFixed(0) + ' ton/Ha/tahun';
   document.getElementById('p-faktor').textContent = (rawat*100).toFixed(0) + '%';
-  document.getElementById('p-tahun').textContent = (pertahun/1000).toFixed(2) + ' ton/tahun';
-  document.getElementById('p-saran').innerHTML = rawat < 0.85
-    ? '💡 Dengan perawatan lebih baik, hasil bisa naik <strong>15–30%</strong>.'
-    : umur === 'tua' ? '⚠️ Pohon sudah tua. Pertimbangkan <strong>replanting</strong>.'
-    : '✅ Pohon masih produktif. Jaga perawatan rutin!';
+  document.getElementById('p-musim').textContent = musimLabel;
+  document.getElementById('p-tahun').textContent = (pertahun/1000).toFixed(2) + ' ton/tahun (tanpa faktor musim)';
+  let saran = '';
+  if (musim === 0.7) saran = '😟 <strong>Musim Trek:</strong> Hasil panen sedang rendah. Ini normal, biasanya berlangsung 2–3 bulan. Manfaatkan waktu ini untuk perawatan kebun dan pemupukan.';
+  else if (musim === 1.15) saran = '🌟 <strong>Musim Puncak:</strong> Hasil panen sedang bagus! Pastikan pemanen siap dan transport lancar agar TBS tidak terlambat ke pabrik.';
+  else saran = rawat < 0.85 ? '💡 Dengan perawatan lebih baik, hasil bisa naik <strong>15–30%</strong>.' : umur === 'tua' ? '⚠️ Pohon sudah tua. Pertimbangkan <strong>replanting</strong>.' : '✅ Pohon masih produktif. Jaga perawatan rutin!';
+  document.getElementById('p-saran').innerHTML = saran;
   document.getElementById('hasil-p').classList.add('show');
   setTimeout(() => document.getElementById('hasil-p').scrollIntoView({behavior:'smooth', block:'start'}), 100);
 }
 
-// ===== HITUNG PUPUK (DIPERBAIKI SESUAI STANDAR PPKS) =====
+// ===== HITUNG PUPUK =====
 function hitungPupuk() {
-  const luas = D['lp'], umur = D['up'], frekP = D['fp'], jt = D['jt'];
-  if (!luas || !umur || !frekP || !jt) { err('err-pp', 'Lengkapi semua pilihan dulu ya!'); return; }
-
-  // Dosis per pohon per tahun (kg) — sesuai standar PPKS
-  // Asumsi: 140 pohon per Ha (standar kebun sawit rakyat)
+  const luas = D['lp'], umur = D['up'], frekP = D['fp'], jt = D['jt'], jp = D['jp'];
+  if (!luas || !umur || !frekP || !jt || !jp) { err('err-pp', 'Lengkapi semua pilihan dulu ya! Pastikan sudah pilih <strong>jenis pupuk</strong> (Tunggal atau NPK).'); return; }
   const POHON_PER_HA = 140;
   const dosisPerPohon = {
-    tbt:    { urea: 0.25, sp36: 0.15, mop: 0.20, dolomit: 0.30 },
-    muda:   { urea: 1.75, sp36: 1.25, mop: 1.75, dolomit: 1.25 },
-    dewasa: { urea: 2.25, sp36: 1.25, mop: 1.75, dolomit: 1.50 }
+    tbt:    {urea:0.25, sp36:0.15, mop:0.20, dolomit:0.30},
+    muda:   {urea:1.75, sp36:1.25, mop:1.75, dolomit:1.25},
+    dewasa: {urea:2.25, sp36:1.25, mop:1.75, dolomit:1.50}
   };
+  let d = {...dosisPerPohon[umur]};
+  if (jt === 'gambut') { d.urea *= 0.9; d.dolomit *= 1.5; }
 
-  let d = { ...dosisPerPohon[umur] };
+  const hU  = parseFloat(document.getElementById('h-urea').value)    || 2400;
+  const hS  = parseFloat(document.getElementById('h-sp36').value)    || 3200;
+  const hM  = parseFloat(document.getElementById('h-mop').value)     || 5000;
+  const hDl = parseFloat(document.getElementById('h-dolomit').value) || 800;
+  const hNpk= parseFloat(document.getElementById('h-npk').value)     || 4500;
 
-  // Penyesuaian untuk tanah gambut
-  if (jt === 'gambut') {
-    d.urea    = d.urea * 0.9;      // Gambut kaya N, kurangi 10%
-    d.dolomit = d.dolomit * 1.5;   // Gambut asam, tambah 50%
+  let biaya = 0;
+  clearErr('err-pp');
+
+  if (jp === 'tunggal') {
+    const u  = (d.urea    * POHON_PER_HA * luas) / frekP;
+    const s  = (d.sp36    * POHON_PER_HA * luas) / frekP;
+    const m  = (d.mop     * POHON_PER_HA * luas) / frekP;
+    const dl = (d.dolomit * POHON_PER_HA * luas) / frekP;
+    biaya = (u*hU) + (s*hS) + (m*hM) + (dl*hDl);
+    document.getElementById('pp-urea').textContent    = u.toFixed(0)  + ' kg';
+    document.getElementById('pp-sp36').textContent    = s.toFixed(0)  + ' kg';
+    document.getElementById('pp-mop').textContent     = m.toFixed(0)  + ' kg';
+    document.getElementById('pp-dolomit').textContent = dl.toFixed(0) + ' kg';
+    document.getElementById('hasil-tunggal').style.display = 'block';
+    document.getElementById('hasil-npk').style.display = 'none';
+  } else {
+    // NPK: setara total N+P+K, gunakan dosis NPK 15-15-15
+    // Total kebutuhan hara per Ha per tahun, konversi ke NPK
+    const totalHara = (d.urea + d.sp36 + d.mop) * POHON_PER_HA;
+    const npkPerTahun = totalHara * 0.85; // NPK lebih efisien ~85% dari pupuk tunggal
+    const npk = (npkPerTahun * luas) / frekP;
+    const dl  = (d.dolomit * POHON_PER_HA * luas) / frekP;
+    biaya = (npk * hNpk) + (dl * hDl);
+    document.getElementById('pp-npk').textContent         = npk.toFixed(0) + ' kg';
+    document.getElementById('pp-dolomit-npk').textContent = dl.toFixed(0)  + ' kg';
+    document.getElementById('hasil-tunggal').style.display = 'none';
+    document.getElementById('hasil-npk').style.display = 'block';
   }
 
-  // Kebutuhan per pemupukan (kg) = dosis/pohon × jumlah pohon × luas ÷ frekuensi
-  const u  = (d.urea    * POHON_PER_HA * luas) / frekP;
-  const s  = (d.sp36    * POHON_PER_HA * luas) / frekP;
-  const m  = (d.mop     * POHON_PER_HA * luas) / frekP;
-  const dl = (d.dolomit * POHON_PER_HA * luas) / frekP;
-
-  // Harga: gunakan input user atau default nasional
-  const hU  = parseFloat(document.getElementById('h-urea').value)   || 2400;
-  const hS  = parseFloat(document.getElementById('h-sp36').value)   || 3200;
-  const hM  = parseFloat(document.getElementById('h-mop').value)    || 5000;
-  const hDl = parseFloat(document.getElementById('h-dolomit').value)|| 800;
-
-  const biaya = (u * hU) + (s * hS) + (m * hM) + (dl * hDl);
-
-  clearErr('err-pp');
-  document.getElementById('pp-urea').textContent    = u.toFixed(0)  + ' kg';
-  document.getElementById('pp-sp36').textContent    = s.toFixed(0)  + ' kg';
-  document.getElementById('pp-mop').textContent     = m.toFixed(0)  + ' kg';
-  document.getElementById('pp-dolomit').textContent = dl.toFixed(0) + ' kg';
-  document.getElementById('pp-biaya').textContent   = rpFull(biaya);
+  document.getElementById('pp-biaya').textContent = rpFull(biaya);
   document.getElementById('pp-biaya-sub').textContent = '≈ ' + rp(biaya * frekP) + ' per tahun (' + frekP + 'x pemupukan)';
-
   const saranTanah = jt === 'gambut'
     ? '🌿 <strong>Tanah gambut:</strong> Dolomit ditambah 50% karena gambut bersifat asam. Urea dikurangi sedikit karena gambut sudah kaya nitrogen.'
     : '🪨 <strong>Tanah mineral:</strong> Dosis standar PPKS sudah diterapkan.';
-  document.getElementById('pp-saran').innerHTML = saranTanah + '<br>💡 Taruh pupuk di <strong>piringan pohon</strong>. Waktu terbaik: awal musim hujan &amp; awal kemarau.';
-
+  const saranPupuk = jp === 'npk'
+    ? ' 💊 <strong>NPK Majemuk:</strong> Praktis dan mudah, cocok untuk kebun kecil. Tetap tambahkan Dolomit karena NPK tidak mengandung Magnesium.'
+    : '';
+  document.getElementById('pp-saran').innerHTML = saranTanah + saranPupuk + '<br>💡 Taruh pupuk di <strong>piringan pohon</strong>. Waktu terbaik: awal musim hujan &amp; awal kemarau.';
   document.getElementById('hasil-pp').classList.add('show');
   setTimeout(() => document.getElementById('hasil-pp').scrollIntoView({behavior:'smooth', block:'start'}), 100);
 }
@@ -956,9 +859,8 @@ function ulangPupuk() {
   document.getElementById('kalk-pupuk').querySelectorAll('input').forEach(i => i.value = '');
   document.getElementById('kalk-pupuk').querySelectorAll('.tbtn.on').forEach(b => b.classList.remove('on'));
   document.getElementById('harga-panel').classList.remove('show');
-  document.querySelector('.harga-toggle').textContent = '💰 Sesuaikan Harga Pupuk Lokal (Opsional) ▼';
   clearErr('err-pp');
-  ['lp','up','jt','fp'].forEach(k => delete D[k]);
+  ['lp','up','jt','jp','fp'].forEach(k => delete D[k]);
   window.scrollTo({top:0, behavior:'smooth'});
 }
 
@@ -966,9 +868,28 @@ function ulangPupuk() {
 function hitungBEP() {
   const modal = D['modal'] || parseFloat(document.getElementById('bep-modal-c').value) || 0;
   const profit = D['profit'] || parseFloat(document.getElementById('bep-profit-c').value) || 0;
+  const inflasi = D['inflasi'];
   if (!modal || !profit) { err('err-bep', 'Isi <strong>modal</strong> dan <strong>keuntungan per bulan</strong> dulu ya!'); return; }
-  const bulanBEP = modal / profit;
-  const tahunBEP = bulanBEP / 12;
+  if (inflasi === undefined) { err('err-bep', 'Pilih <strong>perkiraan kenaikan biaya</strong> dulu ya!'); return; }
+
+  let bulanBEP, tahunBEP;
+  if (inflasi === 0) {
+    bulanBEP = modal / profit;
+    tahunBEP = bulanBEP / 12;
+  } else {
+    // Hitung BEP dengan inflasi menggunakan simulasi per tahun
+    let sisa = modal, tahun = 0;
+    let profitTahunIni = profit * 12;
+    while (sisa > 0 && tahun < 100) {
+      if (sisa <= profitTahunIni) { tahun += sisa / profitTahunIni; break; }
+      sisa -= profitTahunIni;
+      tahun++;
+      profitTahunIni *= (1 - inflasi); // keuntungan bersih turun karena biaya naik
+    }
+    tahunBEP = tahun;
+    bulanBEP = tahun * 12;
+  }
+
   const waktu = bulanBEP < 12 ? Math.ceil(bulanBEP) + ' Bulan' : tahunBEP.toFixed(1) + ' Tahun';
   clearErr('err-bep');
   document.getElementById('bep-waktu').textContent = waktu;
@@ -976,14 +897,203 @@ function hitungBEP() {
   document.getElementById('bep-modal').textContent = rpFull(modal);
   document.getElementById('bep-profit').textContent = rpFull(profit);
   document.getElementById('bep-tahun').textContent = rpFull(profit * 12);
+  document.getElementById('bep-inflasi-val').textContent = inflasi === 0 ? 'Tidak diperhitungkan' : (inflasi*100).toFixed(0) + '% per tahun';
   document.getElementById('bep-bulan').textContent = Math.ceil(bulanBEP) + ' bulan (' + tahunBEP.toFixed(1) + ' thn)';
-  document.getElementById('bep-saran').innerHTML = tahunBEP <= 3
+  const saranInflasi = inflasi > 0 ? ` <strong>Catatan:</strong> Dengan inflasi biaya ${(inflasi*100).toFixed(0)}%/tahun, BEP lebih lama dari hitungan sederhana.` : '';
+  document.getElementById('bep-saran').innerHTML = (tahunBEP <= 3
     ? '🎉 Balik modal dalam ' + waktu + ' — <strong>sangat bagus!</strong>'
     : tahunBEP <= 7
     ? '✅ Balik modal ' + waktu + ' masih <strong>wajar</strong> untuk kebun sawit.'
-    : '💡 BEP ' + waktu + ' cukup lama. Naikkan keuntungan per bulan untuk mempercepat.';
+    : '💡 BEP ' + waktu + ' cukup lama. Naikkan keuntungan per bulan untuk mempercepat.') + saranInflasi;
   document.getElementById('hasil-bep').classList.add('show');
   setTimeout(() => document.getElementById('hasil-bep').scrollIntoView({behavior:'smooth', block:'start'}), 100);
+}
+
+// ===== KALENDER PEMUPUKAN =====
+function hitungKalender() {
+  const tglStr = document.getElementById('kal-tgl-terakhir').value;
+  const interval = D['kal-frek'];
+  if (!tglStr) { err('err-kal', 'Isi <strong>tanggal terakhir memupuk</strong> dulu ya!'); return; }
+  if (!interval) { err('err-kal', 'Pilih <strong>frekuensi pemupukan</strong> dulu ya!'); return; }
+
+  const tglTerakhir = new Date(tglStr);
+  const hari = interval * 30; // konversi bulan ke hari
+
+  const next1 = new Date(tglTerakhir); next1.setDate(next1.getDate() + hari);
+  const next2 = new Date(next1);       next2.setDate(next2.getDate() + hari);
+  const next3 = new Date(next2);       next3.setDate(next3.getDate() + hari);
+
+  const today = new Date();
+  const sisaHari = Math.ceil((next1 - today) / (1000*60*60*24));
+
+  clearErr('err-kal');
+  document.getElementById('kal-last').textContent  = fmtTgl(tglTerakhir);
+  document.getElementById('kal-next').textContent  = fmtTgl(next1);
+  document.getElementById('kal-next2').textContent = fmtTgl(next2);
+  document.getElementById('kal-next3').textContent = fmtTgl(next3);
+
+  const sisaEl = document.getElementById('kal-sisa');
+  if (sisaHari < 0) {
+    sisaEl.textContent = 'SUDAH LEWAT ' + Math.abs(sisaHari) + ' hari!';
+    sisaEl.className = 'kalender-val lewat';
+    document.getElementById('kal-saran').innerHTML = '⚠️ <strong>Jadwal pupuk sudah terlewat!</strong> Segera lakukan pemupukan. Keterlambatan pemupukan bisa mengurangi produksi TBS hingga 20%.';
+  } else if (sisaHari <= 14) {
+    sisaEl.textContent = sisaHari + ' hari lagi — SEGERA!';
+    sisaEl.className = 'kalender-val segera';
+    document.getElementById('kal-saran').innerHTML = '💡 Jadwal pupuk <strong>kurang dari 2 minggu lagi</strong>. Mulai siapkan pupuk dan tenaga kerja sekarang agar tidak terlambat.';
+  } else {
+    sisaEl.textContent = sisaHari + ' hari lagi';
+    sisaEl.className = 'kalender-val aman';
+    document.getElementById('kal-saran').innerHTML = '✅ Jadwal pupuk masih <strong>' + sisaHari + ' hari lagi</strong>. Catat tanggal ini dan ingatkan diri kamu 2 minggu sebelumnya.';
+  }
+
+  document.getElementById('hasil-kal').classList.add('show');
+  setTimeout(() => document.getElementById('hasil-kal').scrollIntoView({behavior:'smooth', block:'start'}), 100);
+}
+
+// ===== EKSPOR LAPORAN GAMBAR =====
+function downloadLaporan(tipe) {
+  const areaId = 'ss-area-' + tipe;
+  const area = document.getElementById(areaId);
+  if (!area) { alert('Area laporan tidak ditemukan.'); return; }
+
+  // Buat teks laporan dari konten area
+  const canvas = document.getElementById('laporan-canvas');
+  const W = 360, linesData = [];
+
+  // Kumpulkan data dari area
+  linesData.push({t:'header', text:'🌴 SAWIT PINTAR'});
+  linesData.push({t:'sub', text:'Laporan ' + (tipe==='untung'?'Keuntungan Bersih':tipe==='panen'?'Estimasi Panen':tipe==='pupuk'?'Kebutuhan Pupuk':'Balik Modal')});
+  linesData.push({t:'date', text:'Dibuat: ' + new Date().toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'})});
+  linesData.push({t:'divider'});
+
+  // Ambil semua baris data dari hcard
+  area.querySelectorAll('.hrow').forEach(row => {
+    const l = row.querySelector('.hrow-l');
+    const r = row.querySelector('.hrow-r');
+    if (l && r) linesData.push({t:'row', label:l.textContent.trim(), val:r.textContent.trim()});
+  });
+
+  // Ambil nilai utama
+  const hutama = area.querySelector('.hutama-angka');
+  const hutamaLabel = area.querySelector('.hutama-label');
+  if (hutama && hutamaLabel) {
+    linesData.push({t:'divider'});
+    linesData.push({t:'main', label:hutamaLabel.textContent.trim(), val:hutama.textContent.trim()});
+  }
+
+  // Ambil saran
+  const saranEl = area.querySelector('.saran');
+  if (saranEl) {
+    linesData.push({t:'divider'});
+    linesData.push({t:'saran', text:saranEl.innerText.trim()});
+  }
+
+  linesData.push({t:'divider'});
+  linesData.push({t:'footer', text:'Dosis pupuk berdasarkan standar PPKS'});
+
+  // Hitung tinggi canvas
+  let totalH = 20;
+  linesData.forEach(l => {
+    if (l.t === 'header') totalH += 50;
+    else if (l.t === 'sub') totalH += 28;
+    else if (l.t === 'date') totalH += 24;
+    else if (l.t === 'divider') totalH += 16;
+    else if (l.t === 'row') totalH += 32;
+    else if (l.t === 'main') totalH += 60;
+    else if (l.t === 'saran') totalH += Math.ceil(l.text.length / 40) * 20 + 16;
+    else if (l.t === 'footer') totalH += 24;
+  });
+  totalH += 20;
+
+  canvas.width = W;
+  canvas.height = totalH;
+  const ctx = canvas.getContext('2d');
+
+  // Background
+  ctx.fillStyle = '#f0f7f2';
+  ctx.fillRect(0, 0, W, totalH);
+
+  let y = 20;
+  linesData.forEach(l => {
+    if (l.t === 'header') {
+      ctx.fillStyle = '#1a4a2e';
+      ctx.fillRect(0, y-10, W, 60);
+      ctx.fillStyle = '#f5c842';
+      ctx.font = 'bold 22px Arial';
+      ctx.textAlign = 'center';
+      ctx.fillText(l.text, W/2, y+20);
+      y += 50;
+    } else if (l.t === 'sub') {
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, y-14, W, 28);
+      ctx.fillStyle = '#1a4a2e';
+      ctx.font = 'bold 13px Arial';
+      ctx.textAlign = 'center';
+      ctx.fillText(l.text, W/2, y+4);
+      y += 28;
+    } else if (l.t === 'date') {
+      ctx.fillStyle = '#6b7280';
+      ctx.font = '11px Arial';
+      ctx.textAlign = 'center';
+      ctx.fillText(l.text, W/2, y+4);
+      y += 24;
+    } else if (l.t === 'divider') {
+      ctx.fillStyle = '#e5e7eb';
+      ctx.fillRect(16, y+6, W-32, 1);
+      y += 16;
+    } else if (l.t === 'row') {
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(12, y-2, W-24, 30);
+      ctx.fillStyle = '#4b5563';
+      ctx.font = '12px Arial';
+      ctx.textAlign = 'left';
+      ctx.fillText(l.label, 22, y+16);
+      ctx.fillStyle = '#1a4a2e';
+      ctx.font = 'bold 13px Arial';
+      ctx.textAlign = 'right';
+      ctx.fillText(l.val, W-22, y+16);
+      y += 32;
+    } else if (l.t === 'main') {
+      ctx.fillStyle = '#fef3c7';
+      ctx.fillRect(12, y-2, W-24, 56);
+      ctx.fillStyle = '#8b5e3c';
+      ctx.font = '11px Arial';
+      ctx.textAlign = 'center';
+      ctx.fillText(l.label, W/2, y+14);
+      ctx.fillStyle = '#1a4a2e';
+      ctx.font = 'bold 24px Arial';
+      ctx.textAlign = 'center';
+      ctx.fillText(l.val, W/2, y+42);
+      y += 60;
+    } else if (l.t === 'saran') {
+      ctx.fillStyle = '#f0fdf4';
+      const lines = [];
+      const words = l.text.split(' ');
+      let line = '';
+      words.forEach(w => { const test = line + w + ' '; if (ctx.measureText(test).width > W-48 && line !== '') { lines.push(line.trim()); line = w + ' '; } else { line = test; } });
+      if (line.trim()) lines.push(line.trim());
+      const boxH = lines.length * 20 + 16;
+      ctx.fillRect(12, y-2, W-24, boxH);
+      ctx.fillStyle = '#1a4a2e';
+      ctx.font = '11px Arial';
+      ctx.textAlign = 'left';
+      lines.forEach((ln, i) => { ctx.fillText(ln, 22, y + 14 + i*20); });
+      y += boxH + 4;
+    } else if (l.t === 'footer') {
+      ctx.fillStyle = '#6b7280';
+      ctx.font = '10px Arial';
+      ctx.textAlign = 'center';
+      ctx.fillText(l.text, W/2, y+4);
+      y += 24;
+    }
+  });
+
+  // Download
+  const link = document.createElement('a');
+  link.download = 'sawit-pintar-laporan-' + tipe + '-' + Date.now() + '.png';
+  link.href = canvas.toDataURL('image/png');
+  link.click();
 }
 
 // ===== ULANG GENERIC =====
