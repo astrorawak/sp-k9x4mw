@@ -60,7 +60,7 @@ body{font-family:-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-ser
 /* INPUT */
 .q{margin-bottom:18px;}
 .qlabel{font-size:13px;font-weight:800;color:var(--hijau-tua);margin-bottom:8px;display:block;}
-.qhint{font-size:11px;color:var(--abu);font-weight:600;margin-bottom:6px;display:block;}
+.qhint{font-size:11px;color:var(--abu);font-weight:600;margin-bottom:6px;display:block;line-height:1.5;}
 .tbtn-wrap{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px;}
 .tbtn{background:white;border:2px solid #e2e8f0;border-radius:10px;padding:8px 14px;font-size:13px;font-weight:700;font-family:inherit;color:#374151;cursor:pointer;transition:all .15s;}
 .tbtn:active{transform:scale(.95);}
@@ -149,6 +149,11 @@ body{font-family:-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-ser
 .riwayat-stat-val{font-size:13px;font-weight:800;color:var(--hijau-tua);}
 .riwayat-stat-val.merah{color:var(--merah);}
 .btn-hapus-item{background:none;border:none;font-size:18px;cursor:pointer;color:#d1d5db;padding:2px;}
+
+/* HARGA PUPUK TOGGLE */
+.harga-toggle{background:var(--coklat-muda);border:none;border-radius:10px;padding:10px 14px;font-size:12px;font-weight:700;color:var(--coklat);cursor:pointer;width:100%;text-align:left;margin-bottom:8px;}
+.harga-panel{display:none;}
+.harga-panel.show{display:block;}
 </style>
 </head>
 <body>
@@ -174,12 +179,12 @@ body{font-family:-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-ser
       <div class="menu-card" onclick="buka('panen')">
         <div class="icon">🌾</div>
         <div class="label">Estimasi Panen</div>
-        <div class="sublabel">ton & kg per bulan</div>
+        <div class="sublabel">ton &amp; kg per bulan</div>
       </div>
       <div class="menu-card" onclick="buka('pupuk')">
         <div class="icon">🧪</div>
         <div class="label">Kebutuhan Pupuk</div>
-        <div class="sublabel">& estimasi biaya</div>
+        <div class="sublabel">&amp; estimasi biaya</div>
       </div>
       <div class="menu-card" onclick="buka('bep')">
         <div class="icon">📊</div>
@@ -187,7 +192,7 @@ body{font-family:-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-ser
         <div class="sublabel">butuh berapa lama?</div>
       </div>
     </div>
-    <div class="info-box">🔒 Semua perhitungan di HP kamu<br>Tidak perlu internet • Bayar sekali, gratis selamanya</div>
+    <div class="info-box">📱 Semua perhitungan di HP kamu<br>Tidak perlu internet • Gratis selamanya</div>
   </div>
 
   <!-- ===== KEUNTUNGAN BERSIH ===== -->
@@ -199,7 +204,7 @@ body{font-family:-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-ser
     <div class="asisten">🤖 Isi data panenmu. Pengeluaran bisa dirinci supaya ketahuan mana yang perlu ditekan! Kalau tidak tahu total kg, kira-kira saja — 1 Ha sawit terawat biasanya hasilkan 1.000–1.700 kg per panen.</div>
 
     <div class="q">
-      <span class="qlabel">Bulan & tahun panen ini</span>
+      <span class="qlabel">Bulan &amp; tahun panen ini</span>
       <div class="irow">
         <select class="ifield" id="u-bulan" style="flex:2">
           <option value="">-- Pilih Bulan --</option>
@@ -269,7 +274,6 @@ body{font-family:-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-ser
 
     <div class="scard">
       <div class="scard-title">💸 Rincian Pengeluaran</div>
-
       <div class="bitem">
         <div class="bname">👷 Upah Pemanen</div>
         <div class="bsub">Pilih cara hitung</div>
@@ -284,14 +288,13 @@ body{font-family:-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-ser
           <div class="irow"><input type="number" class="ifield" id="u-upah-bor" placeholder="Total upah..."><span class="isat">Rp</span></div>
         </div>
       </div>
-
       <div class="bitem">
         <div class="bname">🚛 Transport ke Pengepul/Pabrik</div>
         <div class="bsub">Isi 0 jika gratis</div>
         <div class="irow"><input type="number" class="ifield" id="u-transport" placeholder="0"><span class="isat">Rp</span></div>
       </div>
       <div class="bitem">
-        <div class="bname">🧪 Pupuk & Pestisida</div>
+        <div class="bname">🧪 Pupuk &amp; Pestisida</div>
         <div class="irow"><input type="number" class="ifield" id="u-pupuk" placeholder="0"><span class="isat">Rp</span></div>
       </div>
       <div class="bitem">
@@ -338,7 +341,6 @@ body{font-family:-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-ser
       <button class="btn-ulang" onclick="ulangUntung()">🔄 Hitung Ulang</button>
     </div>
 
-    <!-- RIWAYAT — sejajar dengan hasil, TIDAK di dalam div hasil -->
     <div id="riwayat-untung" style="display:none;" class="riwayat-wrap">
       <div class="divider"></div>
       <div class="riwayat-judul">
@@ -362,6 +364,7 @@ body{font-family:-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-ser
     <div class="asisten">🤖 Kita hitung berapa kira-kira hasil panen sawitmu tiap bulan!</div>
     <div class="q">
       <span class="qlabel">Luas kebun</span>
+      <span class="qhint">💡 1 Ha = sekitar 2,5 kali lapangan bola</span>
       <div class="tbtn-wrap" id="g-luas">
         <button class="tbtn" onclick="set('luas',1,this,'g-luas')">1 Ha</button>
         <button class="tbtn" onclick="set('luas',2,this,'g-luas')">2 Ha</button>
@@ -373,6 +376,7 @@ body{font-family:-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-ser
     </div>
     <div class="q">
       <span class="qlabel">Umur pohon sawit</span>
+      <span class="qhint">💡 Pohon sawit mulai berbuah di umur 3 tahun</span>
       <div class="tbtn-wrap">
         <button class="tbtn" onclick="set('umur','muda',this)">3–5 tahun</button>
         <button class="tbtn" onclick="set('umur','prima',this)">6–10 tahun</button>
@@ -382,6 +386,7 @@ body{font-family:-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-ser
     </div>
     <div class="q">
       <span class="qlabel">Kondisi perawatan</span>
+      <span class="qhint">💡 Terawat = rutin dipupuk, dibersihkan, dan dipanen tepat waktu</span>
       <div class="tbtn-wrap">
         <button class="tbtn" onclick="set('rawat',.7,this)">😓 Kurang terawat</button>
         <button class="tbtn" onclick="set('rawat',.85,this)">😊 Cukup terawat</button>
@@ -412,15 +417,17 @@ body{font-family:-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-ser
     </div>
   </div>
 
-  <!-- ===== PUPUK ===== -->
+  <!-- ===== PUPUK (DIPERBAIKI) ===== -->
   <div class="kalk" id="kalk-pupuk">
     <div class="kalk-header">
       <button class="back-btn" onclick="kembali()">←</button>
       <span class="kalk-title">🧪 Kebutuhan Pupuk</span>
     </div>
-    <div class="asisten">🤖 Kita hitung kebutuhan dan biaya pupuk per pemupukan!</div>
+    <div class="asisten">🤖 Kita hitung kebutuhan dan biaya pupuk per pemupukan! Dosis sudah sesuai standar PPKS (Pusat Penelitian Kelapa Sawit).</div>
+
     <div class="q">
       <span class="qlabel">Luas kebun</span>
+      <span class="qhint">💡 1 Ha = sekitar 140 pohon sawit</span>
       <div class="tbtn-wrap" id="g-lp">
         <button class="tbtn" onclick="set('lp',1,this,'g-lp')">1 Ha</button>
         <button class="tbtn" onclick="set('lp',2,this,'g-lp')">2 Ha</button>
@@ -430,24 +437,64 @@ body{font-family:-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-ser
       </div>
       <div class="irow"><input type="number" class="ifield" id="pp-luas-c" placeholder="Atau ketik..." oninput="setC('lp',this.value,'g-lp')"><span class="isat">Ha</span></div>
     </div>
+
     <div class="q">
       <span class="qlabel">Umur pohon sawit</span>
+      <span class="qhint">💡 Pohon belum panen = masih di bawah 3 tahun</span>
       <div class="tbtn-wrap">
-        <button class="tbtn" onclick="set('up','tbt',this)">Belum panen (muda)</button>
+        <button class="tbtn" onclick="set('up','tbt',this)">Belum panen</button>
         <button class="tbtn" onclick="set('up','muda',this)">3–8 tahun</button>
         <button class="tbtn" onclick="set('up','dewasa',this)">9 tahun ke atas</button>
       </div>
     </div>
+
+    <div class="q">
+      <span class="qlabel">Jenis tanah kebun</span>
+      <span class="qhint">💡 Tanah gambut berwarna hitam pekat. Tanah mineral berwarna merah atau coklat.</span>
+      <div class="tbtn-wrap">
+        <button class="tbtn" onclick="set('jt','mineral',this)">🪨 Tanah Mineral</button>
+        <button class="tbtn" onclick="set('jt','gambut',this)">🌿 Tanah Gambut</button>
+      </div>
+    </div>
+
     <div class="q">
       <span class="qlabel">Berapa kali pemupukan setahun?</span>
+      <span class="qhint">💡 Umumnya 2–3 kali setahun, setiap 4–6 bulan sekali</span>
       <div class="tbtn-wrap">
         <button class="tbtn" onclick="set('fp',1,this)">1x setahun</button>
         <button class="tbtn" onclick="set('fp',2,this)">2x setahun</button>
         <button class="tbtn" onclick="set('fp',3,this)">3x setahun</button>
       </div>
     </div>
+
+    <div class="q">
+      <button class="harga-toggle" onclick="toggleHarga()">💰 Sesuaikan Harga Pupuk Lokal (Opsional) ▼</button>
+      <div class="harga-panel" id="harga-panel">
+        <div class="scard">
+          <div class="bsub" style="margin-bottom:12px;">Kosongkan jika tidak tahu — akan pakai harga standar nasional. Tanya ke toko pertanian atau tetangga untuk harga lokal.</div>
+          <div class="bitem">
+            <div class="bname">Urea (N)</div>
+            <div class="irow"><input type="number" class="ifield" id="h-urea" placeholder="Default: 2.400"><span class="isat">Rp/kg</span></div>
+          </div>
+          <div class="bitem">
+            <div class="bname">SP-36 / TSP (P)</div>
+            <div class="irow"><input type="number" class="ifield" id="h-sp36" placeholder="Default: 3.200"><span class="isat">Rp/kg</span></div>
+          </div>
+          <div class="bitem">
+            <div class="bname">MOP / KCl (K)</div>
+            <div class="irow"><input type="number" class="ifield" id="h-mop" placeholder="Default: 5.000"><span class="isat">Rp/kg</span></div>
+          </div>
+          <div class="bitem">
+            <div class="bname">Dolomit (Mg)</div>
+            <div class="irow"><input type="number" class="ifield" id="h-dolomit" placeholder="Default: 800"><span class="isat">Rp/kg</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="err" id="err-pp"></div>
     <button class="btn-hitung" onclick="hitungPupuk()">🧪 Hitung Kebutuhan Pupuk</button>
+
     <div class="hasil" id="hasil-pp">
       <div class="divider"></div>
       <div id="ss-pupuk">
@@ -466,7 +513,7 @@ body{font-family:-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-ser
         <div class="saran" id="pp-saran"></div>
       </div>
       <div style="background:var(--coklat-muda);border-radius:12px;padding:11px 14px;font-size:12px;font-weight:600;color:var(--coklat);text-align:center;margin-bottom:10px;">📸 Mau simpan? Tekan <strong>Power + Volume Atas</strong> untuk screenshot</div>
-      <button class="btn-ulang" onclick="ulang('kalk-pupuk','hasil-pp','err-pp')">🔄 Hitung Ulang</button>
+      <button class="btn-ulang" onclick="ulangPupuk()">🔄 Hitung Ulang</button>
     </div>
   </div>
 
@@ -523,13 +570,13 @@ body{font-family:-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-ser
   </div>
 
 </div>
-<div class="footer">🌴 Sawit Pintar • Dibuat untuk petani Indonesia<br>Perhitungan berdasarkan standar umum kebun sawit rakyat</div>
+<div class="footer">🌴 Sawit Pintar • Dibuat untuk petani Indonesia<br>Dosis pupuk berdasarkan standar PPKS (Pusat Penelitian Kelapa Sawit)</div>
 
 <script>
-// ===== STATE SEDERHANA =====
-const D = {}; // satu objek, semua nilai
-let frek = 0; // 1 atau 2
-let upahMode = ''; // 'kg' atau 'bor'
+// ===== STATE =====
+const D = {};
+let frek = 0;
+let upahMode = '';
 
 // ===== SET NILAI =====
 function set(key, val, el, grupId) {
@@ -562,6 +609,19 @@ function setUpah(mode) {
   document.getElementById('btn-upah-bor').classList.toggle('on', mode === 'bor');
   document.getElementById('wrap-upah-kg').style.display = mode === 'kg' ? 'block' : 'none';
   document.getElementById('wrap-upah-bor').style.display = mode === 'bor' ? 'block' : 'none';
+}
+
+// ===== TOGGLE HARGA PUPUK =====
+function toggleHarga() {
+  const panel = document.getElementById('harga-panel');
+  const btn = document.querySelector('.harga-toggle');
+  if (panel.classList.contains('show')) {
+    panel.classList.remove('show');
+    btn.textContent = '💰 Sesuaikan Harga Pupuk Lokal (Opsional) ▼';
+  } else {
+    panel.classList.add('show');
+    btn.textContent = '💰 Sesuaikan Harga Pupuk Lokal (Opsional) ▲';
+  }
 }
 
 // ===== NAVIGASI =====
@@ -648,7 +708,6 @@ function hitungUntung() {
   document.getElementById('r-bersih').className = 'hutama-angka' + (bersih < 0 ? ' merah' : parseFloat(margin) < 20 ? ' kuning' : '');
   document.getElementById('r-bersih-sub').textContent = bersih >= 0 ? '✅ Kebunmu untung bulan ini!' : '😟 Kebunmu merugi bulan ini';
 
-  // Grafik
   const ops = [
     {nama:'👷 Upah Pemanen', val:upah, warna:'#6366f1'},
     {nama:'🚛 Transport', val:transport, warna:'#f97316'},
@@ -675,8 +734,6 @@ function hitungUntung() {
     : `🤖 <strong>${bulan} ${tahun}</strong> kebunmu merugi <strong>${rp(Math.abs(bersih))}</strong>. Lihat grafik untuk tahu mana yang perlu ditekan.`;
 
   document.getElementById('hasil-u').classList.add('show');
-
-  // Simpan otomatis ke riwayat
   simpanRiwayat({
     id: Date.now() + '_' + Math.random().toString(36).substr(2,4),
     bulan, tahun, totalKg, pendapatan, totalKeluar, bersih,
@@ -684,7 +741,6 @@ function hitungUntung() {
     margin: parseFloat(margin)
   });
   renderRiwayat();
-
   setTimeout(() => document.getElementById('hasil-u').scrollIntoView({behavior:'smooth', block:'start'}), 100);
 }
 
@@ -703,12 +759,10 @@ function ulangUntung() {
   window.scrollTo({top:0, behavior:'smooth'});
 }
 
-// ===== NOTIF INLINE (tidak pakai fixed overlay agar tidak blokir tap) =====
+// ===== NOTIF INLINE =====
 function tampilNotif(judul, pesan, tombolTeks) {
-  // Hapus notif lama kalau ada
   const lama = document.getElementById('notif-inline');
   if (lama) lama.remove();
-
   const el = document.createElement('div');
   el.id = 'notif-inline';
   el.style.cssText = 'background:#fef3c7;border:2px solid #f5c842;border-radius:16px;padding:18px 16px;margin:16px 0;font-family:inherit;';
@@ -716,8 +770,6 @@ function tampilNotif(judul, pesan, tombolTeks) {
     <div style="font-size:15px;font-weight:800;color:#1a4a2e;margin-bottom:8px;">${judul}</div>
     <div style="font-size:13px;font-weight:600;color:#374151;line-height:1.7;margin-bottom:14px;">${pesan}</div>
     <button onclick="document.getElementById('notif-inline').remove()" style="width:100%;background:#1a4a2e;color:white;border:none;border-radius:10px;padding:12px;font-size:13px;font-weight:800;font-family:inherit;cursor:pointer;">${tombolTeks}</button>`;
-
-  // Sisipkan setelah area hasil
   const hasilEl = document.getElementById('hasil-u');
   hasilEl.parentNode.insertBefore(el, hasilEl.nextSibling);
   el.scrollIntoView({behavior:'smooth', block:'center'});
@@ -728,11 +780,9 @@ function getRiwayat() {
   try { return JSON.parse(localStorage.getItem('sp_riwayat')) || []; }
   catch(e) { return []; }
 }
-
 function simpanRiwayat(entri) {
   let data = getRiwayat();
   if (data.length >= 24) {
-    // Tampil notif penuh — tidak simpan
     tampilNotif(
       '📦 Catatan Panenmu Sudah Penuh',
       'Kamu sudah menyimpan <strong>24 data panen</strong> — batas maksimal 1 tahun. Hasil hitungan ini tetap tampil, tapi tidak masuk riwayat.<br><br>Hapus beberapa data lama di riwayat bawah dulu untuk bisa mencatat panen baru.',
@@ -743,23 +793,19 @@ function simpanRiwayat(entri) {
   data.push(entri);
   localStorage.setItem('sp_riwayat', JSON.stringify(data));
 }
-
 function hapusRiwayat(id) {
   const data = getRiwayat().filter(d => d.id !== id);
   localStorage.setItem('sp_riwayat', JSON.stringify(data));
   renderRiwayat();
 }
-
 function renderRiwayat() {
   const data = getRiwayat();
   const wrap = document.getElementById('riwayat-untung');
   if (data.length === 0) { wrap.style.display = 'none'; return; }
   wrap.style.display = 'block';
-  // Render grafik setelah layout selesai
   requestAnimationFrame(() => _renderGrafik(data));
   _renderList(data);
 }
-
 function _renderGrafik(data) {
   const svgEl = document.getElementById('svg-tren');
   const W = svgEl.parentElement.offsetWidth || 320;
@@ -767,76 +813,41 @@ function _renderGrafik(data) {
   const pad = { top:16, right:16, bottom:8, left:48 };
   const gW = W - pad.left - pad.right;
   const gH = H - pad.top - pad.bottom;
-
   const vals = data.map(d => d.bersih);
   const minV = Math.min(...vals);
   const maxV = Math.max(...vals);
   const range = maxV - minV || 1;
-
   const xStep = gW / Math.max(data.length - 1, 1);
-
-  // Buat titik
   const pts = data.map((d, i) => {
     const x = pad.left + i * xStep;
     const y = pad.top + gH - ((d.bersih - minV) / range) * gH;
     return {x, y, d};
   });
-
-  // Polyline
-  const polyline = pts.map(p => p.x + ',' + p.y).join(' ');
-
-  // Area fill (gradient)
-  const areaPath = `M${pts[0].x},${pad.top + gH} ` +
-    pts.map(p => `L${p.x},${p.y}`).join(' ') +
-    ` L${pts[pts.length-1].x},${pad.top + gH} Z`;
-
-  // Grid lines Y (3 lines)
-  let gridLines = '';
-  for (let i = 0; i <= 2; i++) {
-    const y = pad.top + (gH / 2) * i;
-    const val = maxV - (range / 2) * i;
-    gridLines += `<line x1="${pad.left}" y1="${y}" x2="${W - pad.right}" y2="${y}" stroke="#f3f4f6" stroke-width="1"/>`;
-    gridLines += `<text x="${pad.left - 4}" y="${y + 4}" text-anchor="end" font-size="9" fill="#9ca3af">${rp(val)}</text>`;
-  }
-
-  // Zero line jika ada negatif
-  let zeroLine = '';
-  if (minV < 0 && maxV > 0) {
-    const y0 = pad.top + gH - ((0 - minV) / range) * gH;
-    zeroLine = `<line x1="${pad.left}" y1="${y0}" x2="${W - pad.right}" y2="${y0}" stroke="#ef4444" stroke-width="1" stroke-dasharray="4,3"/>`;
-  }
-
-  // Titik lingkaran
-  let circles = '';
-  pts.forEach((p, i) => {
-    const warna = p.d.bersih >= 0 ? '#2d7a4f' : '#e53e3e';
-    circles += `<circle cx="${p.x}" cy="${p.y}" r="4" fill="${warna}" stroke="white" stroke-width="2"/>`;
+  const polyline = pts.map(p => `${p.x},${p.y}`).join(' ');
+  const areaPath = `M${pts[0].x},${pad.top+gH} ` + pts.map(p => `L${p.x},${p.y}`).join(' ') + ` L${pts[pts.length-1].x},${pad.top+gH} Z`;
+  let svgHtml = `
+    <defs><linearGradient id="grd" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#2d7a4f" stop-opacity="0.25"/><stop offset="100%" stop-color="#2d7a4f" stop-opacity="0"/></linearGradient></defs>
+    <path d="${areaPath}" fill="url(#grd)"/>
+    <polyline points="${polyline}" fill="none" stroke="#2d7a4f" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>`;
+  pts.forEach(p => {
+    svgHtml += `<circle cx="${p.x}" cy="${p.y}" r="4" fill="${p.d.bersih >= 0 ? '#2d7a4f' : '#e53e3e'}" stroke="white" stroke-width="2"/>`;
   });
-
-  const svgHtml = `
-    <defs>
-      <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#4caf78" stop-opacity="0.3"/>
-        <stop offset="100%" stop-color="#4caf78" stop-opacity="0.02"/>
-      </linearGradient>
-    </defs>
-    ${gridLines}
-    ${zeroLine}
-    <path d="${areaPath}" fill="url(#areaGrad)"/>
-    <polyline points="${polyline}" fill="none" stroke="#2d7a4f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-    ${circles}`;
-
-  document.getElementById('svg-tren').setAttribute('viewBox', `0 0 ${W} ${H}`);
-  document.getElementById('svg-tren').innerHTML = svgHtml;
-  const labelsHtml = data.map(d => `<span style="font-size:9px;font-weight:700;color:#6b7280;text-align:center;flex:1">${d.bulan.substring(0,3)}</span>`).join('');
-  document.getElementById('svg-labels').innerHTML = labelsHtml;
+  const fmt = n => { if(Math.abs(n)>=1e6) return (n/1e6).toFixed(1)+'jt'; if(Math.abs(n)>=1e3) return Math.round(n/1e3)+'rb'; return n; };
+  const yLabels = [minV, (minV+maxV)/2, maxV];
+  yLabels.forEach((v, i) => {
+    const y = pad.top + gH - ((v - minV) / range) * gH;
+    svgHtml += `<text x="${pad.left - 4}" y="${y + 4}" text-anchor="end" font-size="9" fill="#6b7280" font-weight="600">${fmt(v)}</text>`;
+    svgHtml += `<line x1="${pad.left}" y1="${y}" x2="${pad.left + gW}" y2="${y}" stroke="#f3f4f6" stroke-width="1"/>`;
+  });
+  svgEl.innerHTML = svgHtml;
+  svgEl.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  const labelsEl = document.getElementById('svg-labels');
+  labelsEl.innerHTML = data.map(d => `<span style="font-size:9px;font-weight:700;color:#6b7280">${d.bulan.substring(0,3)}</span>`).join('');
 }
-
 function _renderList(data) {
   let listHtml = '';
-  const desc = [...data].reverse();
-  desc.forEach((d, i) => {
-    const prev = desc[i + 1];
+  [...data].reverse().forEach((d, i, arr) => {
+    const prev = arr[i + 1];
     let badge = '';
     if (prev) {
       const diff = d.bersih - prev.bersih;
@@ -887,23 +898,68 @@ function hitungPanen() {
   setTimeout(() => document.getElementById('hasil-p').scrollIntoView({behavior:'smooth', block:'start'}), 100);
 }
 
-// ===== HITUNG PUPUK =====
+// ===== HITUNG PUPUK (DIPERBAIKI SESUAI STANDAR PPKS) =====
 function hitungPupuk() {
-  const luas = D['lp'], umur = D['up'], frekP = D['fp'];
-  if (!luas || !umur || !frekP) { err('err-pp', 'Lengkapi semua pilihan dulu ya!'); return; }
-  const d = {tbt:{urea:250,sp36:150,mop:200,dolomit:300}, muda:{urea:400,sp36:200,mop:350,dolomit:400}, dewasa:{urea:500,sp36:250,mop:500,dolomit:500}}[umur];
-  const u=d.urea*luas/frekP, s=d.sp36*luas/frekP, m=d.mop*luas/frekP, dl=d.dolomit*luas/frekP;
-  const biaya = u*2400 + s*3200 + m*5000 + dl*800;
+  const luas = D['lp'], umur = D['up'], frekP = D['fp'], jt = D['jt'];
+  if (!luas || !umur || !frekP || !jt) { err('err-pp', 'Lengkapi semua pilihan dulu ya!'); return; }
+
+  // Dosis per pohon per tahun (kg) — sesuai standar PPKS
+  // Asumsi: 140 pohon per Ha (standar kebun sawit rakyat)
+  const POHON_PER_HA = 140;
+  const dosisPerPohon = {
+    tbt:    { urea: 0.25, sp36: 0.15, mop: 0.20, dolomit: 0.30 },
+    muda:   { urea: 1.75, sp36: 1.25, mop: 1.75, dolomit: 1.25 },
+    dewasa: { urea: 2.25, sp36: 1.25, mop: 1.75, dolomit: 1.50 }
+  };
+
+  let d = { ...dosisPerPohon[umur] };
+
+  // Penyesuaian untuk tanah gambut
+  if (jt === 'gambut') {
+    d.urea    = d.urea * 0.9;      // Gambut kaya N, kurangi 10%
+    d.dolomit = d.dolomit * 1.5;   // Gambut asam, tambah 50%
+  }
+
+  // Kebutuhan per pemupukan (kg) = dosis/pohon × jumlah pohon × luas ÷ frekuensi
+  const u  = (d.urea    * POHON_PER_HA * luas) / frekP;
+  const s  = (d.sp36    * POHON_PER_HA * luas) / frekP;
+  const m  = (d.mop     * POHON_PER_HA * luas) / frekP;
+  const dl = (d.dolomit * POHON_PER_HA * luas) / frekP;
+
+  // Harga: gunakan input user atau default nasional
+  const hU  = parseFloat(document.getElementById('h-urea').value)   || 2400;
+  const hS  = parseFloat(document.getElementById('h-sp36').value)   || 3200;
+  const hM  = parseFloat(document.getElementById('h-mop').value)    || 5000;
+  const hDl = parseFloat(document.getElementById('h-dolomit').value)|| 800;
+
+  const biaya = (u * hU) + (s * hS) + (m * hM) + (dl * hDl);
+
   clearErr('err-pp');
-  document.getElementById('pp-urea').textContent = u.toFixed(0) + ' kg';
-  document.getElementById('pp-sp36').textContent = s.toFixed(0) + ' kg';
-  document.getElementById('pp-mop').textContent = m.toFixed(0) + ' kg';
+  document.getElementById('pp-urea').textContent    = u.toFixed(0)  + ' kg';
+  document.getElementById('pp-sp36').textContent    = s.toFixed(0)  + ' kg';
+  document.getElementById('pp-mop').textContent     = m.toFixed(0)  + ' kg';
   document.getElementById('pp-dolomit').textContent = dl.toFixed(0) + ' kg';
-  document.getElementById('pp-biaya').textContent = rpFull(biaya);
+  document.getElementById('pp-biaya').textContent   = rpFull(biaya);
   document.getElementById('pp-biaya-sub').textContent = '≈ ' + rp(biaya * frekP) + ' per tahun (' + frekP + 'x pemupukan)';
-  document.getElementById('pp-saran').innerHTML = '💡 Taruh pupuk di <strong>piringan pohon</strong>. Waktu terbaik: awal musim hujan & kemarau.';
+
+  const saranTanah = jt === 'gambut'
+    ? '🌿 <strong>Tanah gambut:</strong> Dolomit ditambah 50% karena gambut bersifat asam. Urea dikurangi sedikit karena gambut sudah kaya nitrogen.'
+    : '🪨 <strong>Tanah mineral:</strong> Dosis standar PPKS sudah diterapkan.';
+  document.getElementById('pp-saran').innerHTML = saranTanah + '<br>💡 Taruh pupuk di <strong>piringan pohon</strong>. Waktu terbaik: awal musim hujan &amp; awal kemarau.';
+
   document.getElementById('hasil-pp').classList.add('show');
   setTimeout(() => document.getElementById('hasil-pp').scrollIntoView({behavior:'smooth', block:'start'}), 100);
+}
+
+function ulangPupuk() {
+  document.getElementById('hasil-pp').classList.remove('show');
+  document.getElementById('kalk-pupuk').querySelectorAll('input').forEach(i => i.value = '');
+  document.getElementById('kalk-pupuk').querySelectorAll('.tbtn.on').forEach(b => b.classList.remove('on'));
+  document.getElementById('harga-panel').classList.remove('show');
+  document.querySelector('.harga-toggle').textContent = '💰 Sesuaikan Harga Pupuk Lokal (Opsional) ▼';
+  clearErr('err-pp');
+  ['lp','up','jt','fp'].forEach(k => delete D[k]);
+  window.scrollTo({top:0, behavior:'smooth'});
 }
 
 // ===== HITUNG BEP =====
@@ -938,13 +994,13 @@ function ulang(kalkId, hasilId, errId) {
   clearErr(errId);
   window.scrollTo({top:0, behavior:'smooth'});
 }
+
 // ===== SERVICE WORKER (PWA Offline) =====
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('sw.js').catch(() => {});
   });
 }
-
 </script>
 </body>
 </html>
